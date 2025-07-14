@@ -1,6 +1,5 @@
 import { Montserrat, Qwitcher_Grypen } from "next/font/google"
 import "./globals.css"
-import { LanguageProvider } from "../src/context/LanguageContext"
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -30,7 +29,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={`${montserrat.variable} ${qwitcherGrypen.variable} font-montserrat antialiased`}>
-        <LanguageProvider>{children}</LanguageProvider>
+        {children}
       </body>
     </html>
   )
