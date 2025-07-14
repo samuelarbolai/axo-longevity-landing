@@ -1,0 +1,43 @@
+const translations = {
+  en: {
+    title: "It's time you own your health",
+    subtitle: "Every year. Starting with 100+ lab tests and insights from top doctors. All for just $499.",
+    emphasis: "your health",
+    join: "Join Waitlist",
+    longLiveYou: "Long Live You",
+    paragraph1: "By celebrating the small moments that make life big,",
+    paragraph2: "Long Live",
+    paragraph3: "shows you that by unlocking health, you unlock your life.",
+    point1: "160+ lab tests",
+    point2: "Whole body testing",
+    point3: "Tracked over time",
+  },
+  es: {
+    title: "Es hora de que tomes el control de tu salud",
+    subtitle: "Cada año. Comienza con más de 100 exámenes y análisis de expertos. Todo por solo $499.",
+    emphasis: "tu salud",
+    join: "Unirse a la lista",
+    longLiveYou: "Larga vida a ti",
+    paragraph1: "Al celebrar los pequeños momentos que hacen grande la vida,",
+    paragraph2: "Larga Vida",
+    paragraph3: "te muestra que al desbloquear la salud, desbloqueas tu vida.",
+    point1: "160+ exámenes de laboratorio",
+    point2: "Pruebas de todo el cuerpo",
+    point3: "Seguimiento a lo largo del tiempo",
+  },
+  de: {
+    title: "Es ist Zeit, dass du deine Gesundheit besitzt",
+    subtitle: "Jedes Jahr. Mit über 100 Labortests und Einblicken von Top-Ärzten. Alles für nur $499.",
+    emphasis: "deine Gesundheit",
+    join: "Warteliste beitreten",
+    longLiveYou: "Lang lebe du",
+    paragraph1: "Indem wir die kleinen Momente feiern, die das Leben groß machen,",
+    paragraph2: "Lang Leben",
+    paragraph3: "zeigt dir, dass du durch das Freischalten der Gesundheit dein Leben freischaltest.",
+    point1: "160+ Labortests",
+    point2: "Ganzkörpertests",
+    point3: "Über die Zeit verfolgt",
+  },
+}
+
+export default translations
