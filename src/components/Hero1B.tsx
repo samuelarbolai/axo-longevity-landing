@@ -7,13 +7,13 @@ import HeroModal from "./HeroModal"
 import { ScrollingRow } from "./Landing6"
 
 const heroImages = [
-  "/hero1b1.webp",
-  "/hero1b2.webp",
-  "/hero1b3.webp",
-  "/hero1b4.webp",
-  "/hero1b5.webp",
-  "/hero1b6.webp",
-  "/hero1b7.webp",
+  "/placeholder.svg?height=800&width=600&text=Hero+Image+1",
+  "/placeholder.svg?height=800&width=600&text=Hero+Image+2",
+  "/placeholder.svg?height=800&width=600&text=Hero+Image+3",
+  "/placeholder.svg?height=800&width=600&text=Hero+Image+4",
+  "/placeholder.svg?height=800&width=600&text=Hero+Image+5",
+  "/placeholder.svg?height=800&width=600&text=Hero+Image+6",
+  "/placeholder.svg?height=800&width=600&text=Hero+Image+7",
 ]
 
 export default function Hero1B() {

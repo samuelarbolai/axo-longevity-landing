@@ -1,4 +1,5 @@
 "use client"
+import { useEffect } from "react"
 import Hero1B from "../src/components/Hero1B"
 import Landing2 from "../src/components/Landing2"
 import Landing3 from "../src/components/Landing3"
@@ -14,6 +15,29 @@ import { LanguageProvider } from "../src/context/LanguageContext"
 
 export default function LandingPage() {
   const variant = "b"
+
+  useEffect(() => {
+    // Add smooth scrolling behavior
+    document.documentElement.style.scrollBehavior = "smooth"
+
+    const handleLinkClick = (e: Event) => {
+      const target = e.target as HTMLAnchorElement
+      const href = target.getAttribute("href")
+      if (href && href.startsWith("#")) {
+        e.preventDefault()
+        const element = document.querySelector(href)
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" })
+        }
+      }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach((a) => a.addEventListener("click", handleLinkClick))
+
+    return () => {
+      document.querySelectorAll('a[href^="#"]').forEach((a) => a.removeEventListener("click", handleLinkClick))
+    }
+  }, [])
 
   return (
     <LanguageProvider>

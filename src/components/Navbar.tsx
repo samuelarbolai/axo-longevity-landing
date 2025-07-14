@@ -49,7 +49,7 @@ function Navbar({ variant = "b" }) {
           </div>
           <div className="flex-1 flex justify-center text-4xl tracking-wide font-extralight">
             <Image
-              src={variant === "b" || (scrolled && !justScrolled) ? "/logo.png" : "/logo_blanco.png"}
+              src="/placeholder.svg?height=64&width=160&text=Logo"
               alt="Logo"
               width={160}
               height={64}
@@ -107,7 +107,7 @@ function Navbar({ variant = "b" }) {
       >
         <div className="mx-auto lg:mx-0 text-4xl tracking-wide font-extralight">
           <Image
-            src={variant === "b" || (scrolled && !justScrolled) ? "/logo.png" : "/logo_blanco.png"}
+            src="/placeholder.svg?height=64&width=160&text=Logo"
             alt="Logo"
             width={160}
             height={64}
@@ -144,4 +144,5 @@ function Navbar({ variant = "b" }) {
     </>
   )
 }
+
 export default Navbar

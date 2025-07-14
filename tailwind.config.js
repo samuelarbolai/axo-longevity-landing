@@ -1,8 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const defaultConfig = require("tailwindcss/defaultConfig")
-
 module.exports = {
-  ...defaultConfig,
   darkMode: ["class"],
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -12,12 +9,10 @@ module.exports = {
     "*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    ...defaultConfig.theme,
     extend: {
-      ...defaultConfig.theme.extend,
       fontFamily: {
-        montserrat: ["Montserrat", "sans-serif"],
-        qwitcher: ["Qwitcher Grypen", "cursive"],
+        montserrat: ["var(--font-montserrat)", "sans-serif"],
+        qwitcher: ["var(--font-qwitcher)", "cursive"],
         serif4: ["Source Serif 4", "serif"],
       },
       colors: {
@@ -62,5 +57,5 @@ module.exports = {
       },
     },
   },
-  plugins: [...defaultConfig.plugins, require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate")],
 }
