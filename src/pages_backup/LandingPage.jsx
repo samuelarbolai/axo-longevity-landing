@@ -1,4 +1,3 @@
-"use client"
 import Hero1 from "../components/Hero1";
 import Landing2 from "../components/Landing2";
 import Landing3 from "../components/Landing3";
@@ -9,13 +8,10 @@ import Landing7 from "../components/Landing7";
 import Landing8 from "../components/Landing8";
 import Manifesto from "../components/Manifesto";
 import Hero1B from "../components/Hero1B";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 
 export default function LandingPage({ variant }) {
   return (
     <main>
-      <Navbar variant={variant} />
       {variant === 'a' ? <Hero1 /> : <Hero1B />}
       <Landing2 variant={variant} />
       <Landing3 />
@@ -25,7 +21,7 @@ export default function LandingPage({ variant }) {
       <Manifesto />
       <Landing7 />
       <Landing8 />
-      <Footer />
+
     </main>
   );
 }
