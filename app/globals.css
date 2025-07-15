@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Qwitcher+Grypen:wght@400;700&display=swap");
+
+@theme {
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-qwitcher: "Qwitcher Grypen", cursive;
+  --font-serif4: "Times New Roman", Times, "Liberation Serif", "Nimbus Roman No9 L", serif;
+}
+
 @layer base {
   :root {
     --background: #ffffff;
@@ -48,7 +56,19 @@
   }
 
   .font-serif {
-    font-family: "Times New Roman", Times, "Liberation Serif", "Nimbus Roman No9 L", serif;
+    font-family: "Crimson Text", "Times New Roman", Times, "Liberation Serif", serif;
+  }
+
+  .font-montserrat {
+    font-family: var(--font-montserrat);
+  }
+
+  .font-cursive {
+    font-family: var(--font-qwitcher);
+  }
+
+  .font-serif4 {
+    font-family: var(--font-serif4);
   }
 
   /* Ensure smooth animations */
