@@ -32,15 +32,15 @@ export default function AthleteHero() {
         <div className="flex-1 flex flex-col items-center justify-center px-6 text-center max-w-6xl mx-auto">
           {/* Main Headline */}
           <div className="mb-20">
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-light tracking-tight mb-12 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight mb-12 leading-tight">
               <span className="text-neutral-400 block mb-4">Stay ahead of your</span>
               <span className="text-neutral-900 font-normal block">performance limits</span>
             </h1>
             <div className="max-w-4xl mx-auto space-y-6">
-              <p className="text-xl md:text-2xl text-neutral-600 font-light leading-relaxed">
+              <p className="text-lg md:text-xl text-neutral-600 font-light leading-relaxed">
                 Meet AXO Elite. Your performance companion for the rest of your career.
               </p>
-              <p className="text-lg md:text-xl text-neutral-500">From the comfort of your training environment.</p>
+              <p className="text-base md:text-lg text-neutral-500">From the comfort of your training environment.</p>
             </div>
           </div>
 
