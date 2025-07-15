@@ -20,7 +20,7 @@ export default function AthleteNavbar() {
     <>
       <nav
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-          scrolled ? "bg-white/90 backdrop-blur-md border-b border-soft-blue/20 shadow-lg" : "bg-transparent"
+          scrolled ? "bg-white/95 backdrop-blur-md border-b border-soft-blue/20 shadow-lg" : "bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

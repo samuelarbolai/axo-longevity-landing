@@ -40,56 +40,68 @@ export default function AthleteHero() {
         ></div>
       </div>
 
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 text-center pt-20">
-        {/* Main Headline */}
-        <div className="mb-12">
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-inter font-light tracking-tight mb-6">
-            <span className="text-charcoal">ELEVATE</span>
-            <br />
-            <span className="gradient-text font-medium">YOUR PEAK</span>
-          </h1>
-          <p className="text-xl md:text-2xl lg:text-3xl text-charcoal/70 font-source font-light max-w-4xl mx-auto leading-relaxed">
-            Sophisticated Performance Analysis for Elite Athletes
-            <br />
-            <span className="text-soft-blue font-medium">Refined biomarker insights trusted by Olympic champions</span>
-          </p>
-        </div>
+      {/* Main Content */}
+      <div className="relative z-10 min-h-screen flex flex-col">
+        {/* Spacer for navbar */}
+        <div className="h-20"></div>
 
-        {/* Performance Metrics Display */}
-        <div className="mb-16">
-          <PerformanceMetrics stats={performanceStats} currentIndex={currentMetric} />
-        </div>
-
-        {/* CTA Section */}
-        <div className="space-y-8">
-          <JoinWaitlistButton
-            onClick={() => setShowModal(true)}
-            className="bg-gradient-to-r from-soft-blue to-sage-green text-white font-inter font-medium text-xl px-16 py-5 rounded-2xl elegant-glow hover:scale-105 transition-all duration-500 shadow-lg"
-          >
-            Begin Your Journey
-          </JoinWaitlistButton>
-
-          <div className="flex flex-wrap justify-center gap-12 text-sm text-charcoal/60 font-source">
-            <div className="flex items-center gap-3">
-              <div className="w-3 h-3 bg-sage-green/60 rounded-full gentle-pulse"></div>
-              <span>100+ Elite Biomarkers</span>
+        {/* Hero Content */}
+        <div className="flex-1 flex flex-col items-center justify-center px-6 text-center">
+          {/* Main Headline */}
+          <div className="mb-16">
+            <h1 className="text-7xl md:text-8xl lg:text-9xl font-inter font-light tracking-tight mb-8 leading-none">
+              <span className="text-charcoal block">ELEVATE</span>
+              <span className="gradient-text font-medium block">YOUR PEAK</span>
+            </h1>
+            <div className="max-w-5xl mx-auto space-y-4">
+              <p className="text-2xl md:text-3xl lg:text-4xl text-charcoal/70 font-source font-light leading-relaxed">
+                Sophisticated Performance Analysis for Elite Athletes
+              </p>
+              <p className="text-xl md:text-2xl text-soft-blue font-medium">
+                Refined biomarker insights trusted by Olympic champions
+              </p>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="w-3 h-3 bg-soft-blue/60 rounded-full gentle-pulse" style={{ animationDelay: "1s" }}></div>
-              <span>Olympic-Level Analysis</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <div
-                className="w-3 h-3 bg-warm-coral/60 rounded-full gentle-pulse"
-                style={{ animationDelay: "2s" }}
-              ></div>
-              <span>Personalized Protocols</span>
+          </div>
+
+          {/* Performance Metrics Display */}
+          <div className="mb-16">
+            <PerformanceMetrics stats={performanceStats} currentIndex={currentMetric} />
+          </div>
+
+          {/* CTA Section */}
+          <div className="space-y-12">
+            <JoinWaitlistButton
+              onClick={() => setShowModal(true)}
+              className="bg-gradient-to-r from-soft-blue to-sage-green text-white font-inter font-medium text-xl px-16 py-6 rounded-2xl elegant-glow hover:scale-105 transition-all duration-500 shadow-lg"
+            >
+              Begin Your Journey
+            </JoinWaitlistButton>
+
+            <div className="flex flex-wrap justify-center gap-16 text-base text-charcoal/60 font-source">
+              <div className="flex items-center gap-4">
+                <div className="w-4 h-4 bg-sage-green/60 rounded-full gentle-pulse"></div>
+                <span>100+ Elite Biomarkers</span>
+              </div>
+              <div className="flex items-center gap-4">
+                <div
+                  className="w-4 h-4 bg-soft-blue/60 rounded-full gentle-pulse"
+                  style={{ animationDelay: "1s" }}
+                ></div>
+                <span>Olympic-Level Analysis</span>
+              </div>
+              <div className="flex items-center gap-4">
+                <div
+                  className="w-4 h-4 bg-warm-coral/60 rounded-full gentle-pulse"
+                  style={{ animationDelay: "2s" }}
+                ></div>
+                <span>Personalized Protocols</span>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2">
+        <div className="flex justify-center pb-12">
           <div className="w-8 h-12 border-2 border-soft-blue/40 rounded-full flex justify-center">
             <div className="w-1 h-4 bg-soft-blue/60 rounded-full mt-3 animate-bounce"></div>
           </div>
