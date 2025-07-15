@@ -11,9 +11,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        montserrat: ["var(--font-montserrat)", "sans-serif"],
-        qwitcher: ["var(--font-qwitcher)", "cursive"],
-        serif4: ["Source Serif 4", "serif"],
+        inter: ["var(--font-inter)", "sans-serif"],
+        mono: ["var(--font-jetbrains-mono)", "monospace"],
+        source: ["var(--font-source-sans-pro)", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -49,11 +49,19 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        "electric-blue": "#00d4ff",
+        "neon-green": "#39ff14",
+        gold: "#ffd700",
+        titanium: "#2a2d34",
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      animation: {
+        pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        heartbeat: "heartbeat 1.5s ease-in-out infinite",
       },
     },
   },

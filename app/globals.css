@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap");
-
 @layer base {
   :root {
     --background: #0a0a0a;
@@ -35,20 +33,20 @@
   body {
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1d23 100%);
     color: var(--foreground);
-    font-family: "Source Sans Pro", sans-serif;
+    font-family: var(--font-source-sans-pro), sans-serif;
     scroll-behavior: smooth;
   }
 
   .font-inter {
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-inter), sans-serif;
   }
 
   .font-mono {
-    font-family: "JetBrains Mono", monospace;
+    font-family: var(--font-jetbrains-mono), monospace;
   }
 
   .font-source {
-    font-family: "Source Sans Pro", sans-serif;
+    font-family: var(--font-source-sans-pro), sans-serif;
   }
 
   .gradient-text {

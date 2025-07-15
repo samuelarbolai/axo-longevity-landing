@@ -1,34 +1,34 @@
-import { Montserrat, Qwitcher_Grypen } from "next/font/google"
+import { Inter, JetBrains_Mono, Source_Sans_3 as Source_Sans_Pro } from "next/font/google"
 import "./globals.css"
 
-const montserrat = Montserrat({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700", "900"],
-  variable: "--font-montserrat",
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-inter",
 })
 
-const qwitcherGrypen = Qwitcher_Grypen({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-qwitcher",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-jetbrains-mono",
+})
+
+const sourceSansPro = Source_Sans_Pro({
+  subsets: ["latin"],
+  weight: ["300", "400", "600", "700"],
+  variable: "--font-source-sans-pro",
 })
 
 export const metadata = {
-  title: "Axo Longevity - Long Live You",
-  description: "Take control of your health with 100+ lab tests and insights from top doctors.",
+  title: "Axo Elite - Optimize Your Edge",
+  description: "Elite biomarker analysis for professional athletes. The same protocols used by Olympic champions.",
     generator: 'v0.dev'
 }
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,200;8..60,300;8..60,400;8..60,500;8..60,600;8..60,700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className={`${montserrat.variable} ${qwitcherGrypen.variable} font-montserrat antialiased`}>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} ${sourceSansPro.variable} font-source antialiased`}>
         {children}
       </body>
     </html>
