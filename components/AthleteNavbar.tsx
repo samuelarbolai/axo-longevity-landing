@@ -1,126 +1,148 @@
 "use client"
 import { useEffect, useState } from "react"
-import JoinWaitlistButton from "./JoinWaitlistButton"
 import HeroModal from "./HeroModal"
+import Image from "next/image"
+import JoinWaitlistButton from "./JoinWaitlistButton"
+import { useLanguage } from "../context/LanguageContext"
 
-export default function AthleteNavbar() {
+function Navbar({ variant = "b" }) {
   const [scrolled, setScrolled] = useState(false)
+  const [justScrolled, setJustScrolled] = useState(false)
   const [showModal, setShowModal] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [drawerOpen, setDrawerOpen] = useState(false)
+  const { lang, setLang } = useLanguage()
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
+      setScrolled(window.scrollY > (window.innerWidth < 1024 ? 273 : 820))
     }
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    if (scrolled) {
+      setJustScrolled(true)
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => setJustScrolled(false))
+        })
+      })
+    }
+  }, [scrolled])
+
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-neutral-200">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo - Left aligned */}
-            <div className="flex items-center">
-              <div className="text-3xl font-serif text-neutral-900 tracking-wide">AXO</div>
-            </div>
-
-            {/* Desktop Navigation - Right aligned */}
-            <div className="hidden lg:flex items-center space-x-8">
-              <a
-                href="#performance-lab"
-                className="text-neutral-600 hover:text-neutral-900 transition-colors font-medium text-sm"
-              >
-                Performance Lab
-              </a>
-              <a
-                href="#elite-protocols"
-                className="text-neutral-600 hover:text-neutral-900 transition-colors font-medium text-sm"
-              >
-                Elite Protocols
-              </a>
-              <a
-                href="#athlete-stories"
-                className="text-neutral-600 hover:text-neutral-900 transition-colors font-medium text-sm"
-              >
-                Success Stories
-              </a>
-              <a
-                href="#biomarkers"
-                className="text-neutral-600 hover:text-neutral-900 transition-colors font-medium text-sm"
-              >
-                Biomarkers
-              </a>
-
-              <JoinWaitlistButton
-                onClick={() => setShowModal(true)}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2 rounded-full transition-all duration-300 text-sm ml-4"
-              >
-                Join the waitlist
-              </JoinWaitlistButton>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="lg:hidden text-neutral-900 p-2">
-              <div className="w-6 h-6 flex flex-col justify-center space-y-1">
-                <div
-                  className={`w-full h-0.5 bg-neutral-900 transition-all ${mobileMenuOpen ? "rotate-45 translate-y-1.5" : ""}`}
-                ></div>
-                <div
-                  className={`w-full h-0.5 bg-neutral-900 transition-all ${mobileMenuOpen ? "opacity-0" : ""}`}
-                ></div>
-                <div
-                  className={`w-full h-0.5 bg-neutral-900 transition-all ${mobileMenuOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
-                ></div>
-              </div>
+      <div className="lg:hidden">
+        <div
+          className={`navbar fixed top-0 left-0 w-full px-6 py-4 flex justify-between items-center z-50 transition-all duration-300 ${
+            variant === "b" || scrolled ? "bg-[#fef9ef] text-gray-700" : "bg-transparent text-white"
+          }`}
+        >
+          <div className="flex-none">
+            <button
+              onClick={() => setDrawerOpen(true)}
+              className={`text-4xl ${variant === "b" || scrolled ? "text-gray-700" : "text-white"}`}
+            >
+              ☰
             </button>
           </div>
-        </div>
-
-        {/* Mobile Menu */}
-        <div
-          className={`lg:hidden transition-all duration-300 ${mobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"} overflow-hidden bg-white border-t border-neutral-200`}
-        >
-          <div className="px-6 py-6 space-y-6">
-            <a
-              href="#performance-lab"
-              className="block text-neutral-600 hover:text-neutral-900 transition-colors font-medium"
-            >
-              Performance Lab
-            </a>
-            <a
-              href="#elite-protocols"
-              className="block text-neutral-600 hover:text-neutral-900 transition-colors font-medium"
-            >
-              Elite Protocols
-            </a>
-            <a
-              href="#athlete-stories"
-              className="block text-neutral-600 hover:text-neutral-900 transition-colors font-medium"
-            >
-              Success Stories
-            </a>
-            <a
-              href="#biomarkers"
-              className="block text-neutral-600 hover:text-neutral-900 transition-colors font-medium"
-            >
-              Biomarkers
-            </a>
-            <JoinWaitlistButton
-              onClick={() => {
-                setShowModal(true)
-                setMobileMenuOpen(false)
-              }}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-4 rounded-full"
-            >
-              Join the waitlist
-            </JoinWaitlistButton>
+          <div className="flex-1 flex justify-center text-4xl tracking-wide font-extralight">
+            <Image
+              src="/placeholder.svg?height=64&width=160&text=Logo"
+              alt="Logo"
+              width={160}
+              height={64}
+              className="h-10 aspect-auto"
+            />
           </div>
         </div>
-      </nav>
 
+        <div
+          className={`fixed inset-0 z-50 flex transition-opacity duration-300 ${
+            drawerOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
+        >
+          <div
+            className={`transform transition-transform duration-300 w-80 bg-[#fef9ef] p-6 text-xl text-gray-800 ${
+              drawerOpen ? "translate-x-0" : "-translate-x-full"
+            } flex flex-col items-center space-y-6`}
+          >
+            <button onClick={() => setDrawerOpen(false)} className="absolute top-4 right-4 text-2xl">
+              ×
+            </button>
+            <a href="#mission" onClick={() => setDrawerOpen(false)} className="block w-full text-center pt-10">
+              Mission
+            </a>
+            <a href="#our-services" onClick={() => setDrawerOpen(false)} className="block w-full text-center">
+              Our Services
+            </a>
+            <a href="#testimonials" onClick={() => setDrawerOpen(false)} className="block w-full text-center">
+              Testimonials
+            </a>
+            <select
+              value={lang}
+              onChange={(e) => setLang(e.target.value)}
+              className="bg-transparent border border-gray-400 px-2 py-1 rounded"
+            >
+              <option value="en">EN</option>
+              <option value="es">ES</option>
+              <option value="de">DE</option>
+            </select>
+            <JoinWaitlistButton
+              onClick={() => {
+                setDrawerOpen(false)
+                setShowModal(true)
+              }}
+              fullWidth
+            />
+          </div>
+          <div className="flex-1 bg-black bg-opacity-30" onClick={() => setDrawerOpen(false)}></div>
+        </div>
+      </div>
+      <nav
+        className={`hidden lg:flex fixed top-0 left-0 w-full items-center justify-between px-16 py-10 text-xl font-normal z-50 transition-all duration-300 scroll-smooth ${
+          variant === "b" || scrolled ? "bg-[#fef9ef] text-gray-700" : "bg-transparent text-white"
+        }`}
+      >
+        <div className="mx-auto lg:mx-0 text-4xl tracking-wide font-extralight">
+          <Image
+            src="/placeholder.svg?height=64&width=160&text=Logo"
+            alt="Logo"
+            width={160}
+            height={64}
+            className="h-16 aspect-auto"
+          />
+        </div>
+        <div
+          className={`hidden lg:flex gap-6 items-center text-lg font-normal ${
+            variant === "b" || scrolled ? "text-gray-700" : "text-white"
+          }`}
+        >
+          <a href="#mission" className="hover:underline">
+            Mission
+          </a>
+          <a href="#our-services" className="hover:underline">
+            Our Services
+          </a>
+          <a href="#testimonials" className="hover:underline">
+            Testimonials
+          </a>
+          <select
+            value={lang}
+            onChange={(e) => setLang(e.target.value)}
+            className="bg-transparent border border-gray-400 px-2 py-1 rounded"
+          >
+            <option value="en">EN</option>
+            <option value="es">ES</option>
+            <option value="de">DE</option>
+          </select>
+          <JoinWaitlistButton onClick={() => setShowModal(true)} textSize="text-lg" />
+        </div>
+      </nav>
       <HeroModal isOpen={showModal} onClose={() => setShowModal(false)} />
     </>
   )
 }
+
+export default Navbar
