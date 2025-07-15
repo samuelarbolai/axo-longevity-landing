@@ -25,30 +25,32 @@ export default function AthleteHero() {
     <section className="relative min-h-screen bg-gradient-to-b from-white to-neutral-50 overflow-hidden">
       {/* Main Content */}
       <div className="relative z-10 min-h-screen flex flex-col">
-        {/* Spacer for navbar */}
-        <div className="h-20"></div>
+        {/* Spacer for navbar - adjusted for proper navbar height */}
+        <div className="h-16 md:h-20"></div>
 
         {/* Hero Content */}
-        <div className="flex-1 flex flex-col items-center justify-center px-6 text-center max-w-6xl mx-auto">
+        <div className="flex-1 flex flex-col items-center justify-center px-4 md:px-6 text-center max-w-6xl mx-auto py-8 md:py-16">
           {/* Main Headline */}
-          <div className="mb-20">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight mb-12 leading-tight">
-              <span className="text-neutral-400 block mb-4">Stay ahead of your</span>
+          <div className="mb-12 md:mb-16 lg:mb-20">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light tracking-tight mb-8 md:mb-12 leading-tight">
+              <span className="text-neutral-400 block mb-2 md:mb-4">Stay ahead of your</span>
               <span className="text-neutral-900 font-normal block">performance limits</span>
             </h1>
-            <div className="max-w-4xl mx-auto space-y-6">
-              <p className="text-lg md:text-xl text-neutral-600 font-light leading-relaxed">
+            <div className="max-w-3xl lg:max-w-4xl mx-auto space-y-4 md:space-y-6">
+              <p className="text-base md:text-lg lg:text-xl text-neutral-600 font-light leading-relaxed">
                 Meet AXO Elite. Your performance companion for the rest of your career.
               </p>
-              <p className="text-base md:text-lg text-neutral-500">From the comfort of your training environment.</p>
+              <p className="text-sm md:text-base lg:text-lg text-neutral-500">
+                From the comfort of your training environment.
+              </p>
             </div>
           </div>
 
           {/* CTA Button */}
-          <div className="mb-20">
+          <div className="mb-8 md:mb-12 lg:mb-16">
             <JoinWaitlistButton
               onClick={() => setShowModal(true)}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-medium text-lg px-12 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-medium text-base md:text-lg px-8 md:px-12 py-3 md:py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               Join the waitlist
             </JoinWaitlistButton>

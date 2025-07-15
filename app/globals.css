@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@theme {
-  --font-montserrat: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-qwitcher: "Brush Script MT", cursive, fantasy;
-  --font-serif4: "Times New Roman", Times, "Liberation Serif", "Nimbus Roman No9 L", serif;
-}
-
 @layer base {
   :root {
     --background: #ffffff;
@@ -51,22 +45,6 @@
 
   .font-source {
     font-family: var(--font-source-sans-pro), sans-serif;
-  }
-
-  .font-serif {
-    font-family: "Times New Roman", Times, "Liberation Serif", serif;
-  }
-
-  .font-montserrat {
-    font-family: var(--font-montserrat);
-  }
-
-  .font-cursive {
-    font-family: var(--font-qwitcher);
-  }
-
-  .font-serif4 {
-    font-family: var(--font-serif4);
   }
 
   /* Ensure smooth animations */

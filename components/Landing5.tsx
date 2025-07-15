@@ -1,6 +1,6 @@
 "use client"
-import { useLanguage } from "../context/LanguageContext"
-import translations from "../i18n"
+import { useLanguage } from "./LanguageProvider"
+import translations from "../lib/translations"
 import Image from "next/image"
 
 export default function Landing5() {
@@ -9,7 +9,7 @@ export default function Landing5() {
 
   return (
     <section className="bg-[#fef9ef] px-6 md:px-20 py-10 lg:py-24 text-[#3c3d42] text-center">
-      <h2 className="text-5xl md:text-6xl font-serif4 font-extralight">
+      <h2 className="text-5xl md:text-6xl font-serif font-extralight">
         {t.testingTitle} <span className="italic text-[#b4735a]">{t.testingEmphasis}</span>
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
@@ -43,7 +43,7 @@ export default function Landing5() {
                 className="w-full rounded-[2rem]"
               />
             </div>
-            <div className="mt-6 text-4xl text-[#b4735a] font-serif4 font-extralight">{label}</div>
+            <div className="mt-6 text-4xl text-[#b4735a] font-serif font-extralight">{label}</div>
             <div className="mt-6 text-2xl font-medium">{title}</div>
             <div className="mt-1 text-lg text-gray-500">{desc}</div>
           </div>
