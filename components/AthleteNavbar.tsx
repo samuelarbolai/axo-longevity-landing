@@ -21,41 +21,41 @@ export default function AthleteNavbar() {
       <nav className="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-neutral-200">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
+            {/* Logo - Left aligned */}
             <div className="flex items-center">
-              <div className="text-2xl font-light text-neutral-900">
-                <span className="font-normal">AXO</span>
-                <span className="text-neutral-600">ELITE</span>
-              </div>
+              <div className="text-3xl font-serif text-neutral-900 tracking-wide">AXO</div>
             </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-10">
+            {/* Desktop Navigation - Right aligned */}
+            <div className="hidden lg:flex items-center space-x-8">
               <a
                 href="#performance-lab"
-                className="text-neutral-600 hover:text-neutral-900 transition-colors font-medium"
+                className="text-neutral-600 hover:text-neutral-900 transition-colors font-medium text-sm"
               >
                 Performance Lab
               </a>
               <a
                 href="#elite-protocols"
-                className="text-neutral-600 hover:text-neutral-900 transition-colors font-medium"
+                className="text-neutral-600 hover:text-neutral-900 transition-colors font-medium text-sm"
               >
                 Elite Protocols
               </a>
               <a
                 href="#athlete-stories"
-                className="text-neutral-600 hover:text-neutral-900 transition-colors font-medium"
+                className="text-neutral-600 hover:text-neutral-900 transition-colors font-medium text-sm"
               >
                 Success Stories
               </a>
-              <a href="#biomarkers" className="text-neutral-600 hover:text-neutral-900 transition-colors font-medium">
+              <a
+                href="#biomarkers"
+                className="text-neutral-600 hover:text-neutral-900 transition-colors font-medium text-sm"
+              >
                 Biomarkers
               </a>
 
               <JoinWaitlistButton
                 onClick={() => setShowModal(true)}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2 rounded-full transition-all duration-300"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2 rounded-full transition-all duration-300 text-sm ml-4"
               >
                 Join the waitlist
               </JoinWaitlistButton>
