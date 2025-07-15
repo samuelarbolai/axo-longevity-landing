@@ -64,6 +64,28 @@ module.exports = {
       animation: {
         "gentle-pulse": "gentlePulse 3s ease-in-out infinite",
         floating: "floating 6s ease-in-out infinite",
+        bounce: "bounce 1s infinite",
+      },
+      keyframes: {
+        gentlePulse: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.7" },
+        },
+        floating: {
+          "0%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+          "100%": { transform: "translateY(0px)" },
+        },
+        bounce: {
+          "0%, 100%": {
+            transform: "translateY(-25%)",
+            animationTimingFunction: "cubic-bezier(0.8, 0, 1, 1)",
+          },
+          "50%": {
+            transform: "translateY(0)",
+            animationTimingFunction: "cubic-bezier(0, 0, 0.2, 1)",
+          },
+        },
       },
     },
   },

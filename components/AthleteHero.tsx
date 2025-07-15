@@ -40,7 +40,7 @@ export default function AthleteHero() {
         ></div>
       </div>
 
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 text-center">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 text-center pt-20">
         {/* Main Headline */}
         <div className="mb-12">
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-inter font-light tracking-tight mb-6">
