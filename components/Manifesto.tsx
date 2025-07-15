@@ -1,8 +1,8 @@
 "use client"
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import { useLanguage } from "./LanguageProvider"
-import translations from "../lib/translations"
+import { useLanguage } from "../context/LanguageContext"
+import translations from "../i18n"
 
 function Manifesto() {
   const ref = useRef(null)
@@ -47,17 +47,17 @@ function Manifesto() {
             expanded ? "" : "line-clamp-[10] overflow-hidden"
           }`}
         >
-          <p className="mb-4 text-5xl md:text-6xl font-serif font-extralight text-[#3c3d42]">{t.manifestoTitle1}</p>
-          <p className="mb-4 text-4xl text-[#b4735a] font-serif font-extralight">{t.manifestoSubtitle1}</p>
+          <p className="mb-4 text-5xl md:text-6xl font-serif4 font-extralight text-[#3c3d42]">{t.manifestoTitle1}</p>
+          <p className="mb-4 text-4xl text-[#b4735a] font-serif4 font-extralight">{t.manifestoSubtitle1}</p>
           <p className="mb-4 font-normal leading-relaxed text-neutral-500">{t.manifestoPoint1}</p>
           <p className="mb-4 font-normal leading-relaxed text-neutral-500">{t.manifestoPoint2}</p>
           <p className="mb-4 font-normal leading-relaxed text-neutral-500">{t.manifestoPoint3}</p>
           <p className="mb-4 font-normal leading-relaxed text-neutral-500">{t.manifestoPoint4}</p>
           <p className="mb-4 font-normal leading-relaxed text-neutral-500">{t.manifestoPoint5}</p>
           <p className="mb-4 font-normal leading-relaxed text-neutral-500">{t.manifestoPoint6}</p>
-          <p className="mb-4 text-4xl text-[#b4735a] font-serif font-extralight">{t.manifestoSubtitle2}</p>
+          <p className="mb-4 text-4xl text-[#b4735a] font-serif4 font-extralight">{t.manifestoSubtitle2}</p>
           <p className="mb-4 font-normal leading-relaxed text-neutral-500">{t.manifestoPoint7}</p>
-          <p className="mb-4 text-4xl text-[#b4735a] font-serif font-extralight">{t.manifestoSubtitle3}</p>
+          <p className="mb-4 text-4xl text-[#b4735a] font-serif4 font-extralight">{t.manifestoSubtitle3}</p>
           <p className="font-normal leading-relaxed text-neutral-500">{t.manifestoPoint8}</p>
           <p className="font-normal leading-relaxed text-neutral-500">{t.manifestoPoint9}</p>
         </div>

@@ -1,8 +1,8 @@
 "use client"
 import { useState, useEffect } from "react"
 import HeroModal from "./HeroModal"
-import { useLanguage } from "./LanguageProvider"
-import translations from "../lib/translations"
+import { useLanguage } from "../context/LanguageContext"
+import translations from "../i18n"
 
 export default function Landing7() {
   const { lang } = useLanguage()
@@ -73,7 +73,7 @@ export default function Landing7() {
 
   return (
     <section className="bg-[#fef9f1] px-6 md:px-24 py-28">
-      <h2 className="text-5xl md:text-6xl font-serif font-extralight text-center text-[#3c3d42]">
+      <h2 className="text-5xl md:text-6xl font-serif4 font-extralight text-center text-[#3c3d42]">
         <span className="text-[#3c3d42]">{t.faqTitle1} </span>
         <span className="italic text-[#b4735a]">{t.faqTitle2}</span>
       </h2>

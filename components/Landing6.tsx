@@ -1,8 +1,8 @@
 "use client"
 import Image from "next/image"
 import { useEffect, useRef } from "react"
-import { useLanguage } from "./LanguageProvider"
-import translations from "../lib/translations"
+import { useLanguage } from "../context/LanguageContext"
+import translations from "../i18n"
 
 const testimonials = [
   '"Using Axo has helped me optimize my training and recovery with real biomarkers, not just guesses. I\'m training for my next Ironman, and seeing my inflammation markers drop has been game-changing." — Erik, 38, Stockholm',
@@ -52,8 +52,8 @@ export default function Landing6() {
 
   return (
     <section id="testimonials" className="pt-10 lg:pt-28 pb-16 bg-[#fef9f1] text-center">
-      <h2 className="text-7xl font-serif font-extralight text-gray-500">{t.testimonialTitle}</h2>
-      <h3 className="italic text-7xl text-[#b4735a] font-serif font-extralight mt-2">{t.testimonialEmphasis}</h3>
+      <h2 className="text-7xl font-serif4 font-extralight text-gray-500">{t.testimonialTitle}</h2>
+      <h3 className="italic text-7xl text-[#b4735a] font-serif4 font-extralight mt-2">{t.testimonialEmphasis}</h3>
 
       <div className="mt-20 space-y-20">
         <ScrollingRow reverse>
