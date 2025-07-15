@@ -18,14 +18,18 @@ export default function AthleteNavbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-neutral-200">
+      <nav
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+          scrolled ? "bg-white/95 backdrop-blur-md border-b border-soft-blue/20 shadow-lg" : "bg-transparent"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <div className="flex items-center">
-              <div className="text-2xl font-light text-neutral-900">
-                <span className="font-normal">AXO</span>
-                <span className="text-neutral-600">ELITE</span>
+              <div className="text-2xl font-inter font-light">
+                <span className="text-charcoal">AXO</span>
+                <span className="gradient-text font-medium">ELITE</span>
               </div>
             </div>
 
@@ -33,45 +37,50 @@ export default function AthleteNavbar() {
             <div className="hidden lg:flex items-center space-x-10">
               <a
                 href="#performance-lab"
-                className="text-neutral-600 hover:text-neutral-900 transition-colors font-medium"
+                className="text-charcoal/70 hover:text-soft-blue transition-colors font-source font-medium"
               >
                 Performance Lab
               </a>
               <a
                 href="#elite-protocols"
-                className="text-neutral-600 hover:text-neutral-900 transition-colors font-medium"
+                className="text-charcoal/70 hover:text-soft-blue transition-colors font-source font-medium"
               >
                 Elite Protocols
               </a>
               <a
                 href="#athlete-stories"
-                className="text-neutral-600 hover:text-neutral-900 transition-colors font-medium"
+                className="text-charcoal/70 hover:text-soft-blue transition-colors font-source font-medium"
               >
                 Success Stories
               </a>
-              <a href="#biomarkers" className="text-neutral-600 hover:text-neutral-900 transition-colors font-medium">
+              <a
+                href="#biomarkers"
+                className="text-charcoal/70 hover:text-soft-blue transition-colors font-source font-medium"
+              >
                 Biomarkers
               </a>
 
               <JoinWaitlistButton
                 onClick={() => setShowModal(true)}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2 rounded-full transition-all duration-300"
+                className="bg-gradient-to-r from-soft-blue to-sage-green text-white font-inter font-medium px-8 py-3 rounded-xl hover:scale-105 transition-all duration-300 shadow-md"
               >
-                Join the waitlist
+                Get Started
               </JoinWaitlistButton>
             </div>
 
             {/* Mobile Menu Button */}
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="lg:hidden text-neutral-900 p-2">
+            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="lg:hidden text-charcoal p-2">
               <div className="w-6 h-6 flex flex-col justify-center space-y-1">
                 <div
-                  className={`w-full h-0.5 bg-neutral-900 transition-all ${mobileMenuOpen ? "rotate-45 translate-y-1.5" : ""}`}
+                  className={`w-full h-0.5 bg-soft-blue transition-all ${
+                    mobileMenuOpen ? "rotate-45 translate-y-1.5" : ""
+                  }`}
                 ></div>
+                <div className={`w-full h-0.5 bg-soft-blue transition-all ${mobileMenuOpen ? "opacity-0" : ""}`}></div>
                 <div
-                  className={`w-full h-0.5 bg-neutral-900 transition-all ${mobileMenuOpen ? "opacity-0" : ""}`}
-                ></div>
-                <div
-                  className={`w-full h-0.5 bg-neutral-900 transition-all ${mobileMenuOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
+                  className={`w-full h-0.5 bg-soft-blue transition-all ${
+                    mobileMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
+                  }`}
                 ></div>
               </div>
             </button>
@@ -80,30 +89,32 @@ export default function AthleteNavbar() {
 
         {/* Mobile Menu */}
         <div
-          className={`lg:hidden transition-all duration-300 ${mobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"} overflow-hidden bg-white border-t border-neutral-200`}
+          className={`lg:hidden transition-all duration-300 ${
+            mobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          } overflow-hidden bg-white/95 backdrop-blur-md border-t border-soft-blue/20`}
         >
           <div className="px-6 py-6 space-y-6">
             <a
               href="#performance-lab"
-              className="block text-neutral-600 hover:text-neutral-900 transition-colors font-medium"
+              className="block text-charcoal/70 hover:text-soft-blue transition-colors font-source font-medium"
             >
               Performance Lab
             </a>
             <a
               href="#elite-protocols"
-              className="block text-neutral-600 hover:text-neutral-900 transition-colors font-medium"
+              className="block text-charcoal/70 hover:text-soft-blue transition-colors font-source font-medium"
             >
               Elite Protocols
             </a>
             <a
               href="#athlete-stories"
-              className="block text-neutral-600 hover:text-neutral-900 transition-colors font-medium"
+              className="block text-charcoal/70 hover:text-soft-blue transition-colors font-source font-medium"
             >
               Success Stories
             </a>
             <a
               href="#biomarkers"
-              className="block text-neutral-600 hover:text-neutral-900 transition-colors font-medium"
+              className="block text-charcoal/70 hover:text-soft-blue transition-colors font-source font-medium"
             >
               Biomarkers
             </a>
@@ -112,9 +123,9 @@ export default function AthleteNavbar() {
                 setShowModal(true)
                 setMobileMenuOpen(false)
               }}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-4 rounded-full"
+              className="w-full bg-gradient-to-r from-soft-blue to-sage-green text-white font-inter font-medium px-8 py-4 rounded-xl"
             >
-              Join the waitlist
+              Get Started
             </JoinWaitlistButton>
           </div>
         </div>

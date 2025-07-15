@@ -23,9 +23,9 @@ export default function Hero1B() {
 
   return (
     <>
-      <section className="bg-[#fef9f1] text-center px-4 py-16 md:py-24">
+      <section className="bg-[#fef9f1] text-center px-4 py-16 md:py-20">
         <div className="w-full mx-auto">
-          <div className="min-h-[80vh] flex flex-col justify-center items-center">
+          <div className="min-h-[85vh] flex flex-col justify-center items-center">
             <h1 className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-serif text-[#3c3d42] font-light leading-tight">
               {t.title}
               <br />
@@ -39,7 +39,7 @@ export default function Hero1B() {
             </div>
           </div>
 
-          <div className="overflow-hidden mt-16 md:mt-24">
+          <div className="overflow-hidden mt-12 md:mt-16">
             <div className="min-h-[60vh] md:min-h-[70vh]">
               <ScrollingRow>
                 {heroImages.map((src, idx) => (

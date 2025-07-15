@@ -113,7 +113,7 @@ function Hero1() {
             style={{ transform: `translateX(-50%) translateY(${scrollY * 0.52}px)` }}
           />
         )}
-        <div className="absolute bottom-0 w-full text-center pb-20 md:pb-28 z-10">
+        <div className="absolute bottom-0 w-full text-center pb-16 md:pb-20 z-10">
           <p className="text-2xl md:text-3xl lg:text-4xl text-black font-cursive leading-tight">
             Long live jumping <br /> off the dock
           </p>
