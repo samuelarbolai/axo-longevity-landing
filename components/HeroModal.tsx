@@ -66,40 +66,60 @@ export default function HeroModal({ isOpen, onClose }: HeroModalProps) {
     setCountryCode("")
   }
 
+  const handleClose = () => {
+    setSuccess(false)
+    setErrorMsg("")
+    setFormData({ firstName: "", email: "", phone: "", sport: "", level: "" })
+    setCountry("")
+    setCountryCode("")
+    onClose()
+  }
+
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      handleClose()
+    }
+  }
+
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-charcoal/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="glass-effect rounded-3xl p-10 max-w-lg w-full relative elegant-glow soft-border">
+    <div
+      className="fixed inset-0 bg-charcoal/60 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+      onClick={handleBackdropClick}
+    >
+      <div className="glass-effect rounded-3xl p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto relative elegant-glow soft-border">
+        {/* Close button */}
         <button
-          className="absolute top-4 right-4 text-charcoal/60 hover:text-charcoal text-2xl transition-colors"
-          onClick={onClose}
+          className="absolute top-4 right-4 text-charcoal/60 hover:text-charcoal text-2xl transition-colors z-10"
+          onClick={handleClose}
+          type="button"
         >
           ×
         </button>
 
         {!success ? (
           <>
-            <div className="text-center mb-10">
-              <h2 className="text-4xl font-inter font-light mb-6">
+            <div className="text-center mb-8 pr-8">
+              <h2 className="text-3xl font-inter font-light mb-4">
                 <span className="text-charcoal">Begin Your</span>
                 <br />
                 <span className="gradient-text font-medium">Elite Journey</span>
               </h2>
-              <p className="text-charcoal/70 font-source leading-relaxed">
+              <p className="text-charcoal/70 font-source leading-relaxed text-sm">
                 Elevate your performance with sophisticated biomarker analysis trusted by Olympic athletes.
               </p>
             </div>
 
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <input
                   type="text"
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
                   placeholder="First Name*"
-                  className="w-full bg-white/60 border border-charcoal/20 rounded-xl px-4 py-4 text-charcoal placeholder-charcoal/50 focus:border-soft-blue focus:outline-none transition-colors"
+                  className="w-full bg-white/60 border border-charcoal/20 rounded-xl px-4 py-3 text-charcoal placeholder-charcoal/50 focus:border-soft-blue focus:outline-none transition-colors"
                 />
                 <input
                   type="email"
@@ -107,16 +127,16 @@ export default function HeroModal({ isOpen, onClose }: HeroModalProps) {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Email Address*"
-                  className="w-full bg-white/60 border border-charcoal/20 rounded-xl px-4 py-4 text-charcoal placeholder-charcoal/50 focus:border-soft-blue focus:outline-none transition-colors"
+                  className="w-full bg-white/60 border border-charcoal/20 rounded-xl px-4 py-3 text-charcoal placeholder-charcoal/50 focus:border-soft-blue focus:outline-none transition-colors"
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <select
                   name="sport"
                   value={formData.sport}
                   onChange={handleChange}
-                  className="w-full bg-white/60 border border-charcoal/20 rounded-xl px-4 py-4 text-charcoal focus:border-soft-blue focus:outline-none transition-colors"
+                  className="w-full bg-white/60 border border-charcoal/20 rounded-xl px-4 py-3 text-charcoal focus:border-soft-blue focus:outline-none transition-colors"
                 >
                   <option value="" disabled>
                     Select Sport*
@@ -139,7 +159,7 @@ export default function HeroModal({ isOpen, onClose }: HeroModalProps) {
                   name="level"
                   value={formData.level}
                   onChange={handleChange}
-                  className="w-full bg-white/60 border border-charcoal/20 rounded-xl px-4 py-4 text-charcoal focus:border-soft-blue focus:outline-none transition-colors"
+                  className="w-full bg-white/60 border border-charcoal/20 rounded-xl px-4 py-3 text-charcoal focus:border-soft-blue focus:outline-none transition-colors"
                 >
                   <option value="" disabled>
                     Competition Level*
@@ -154,7 +174,7 @@ export default function HeroModal({ isOpen, onClose }: HeroModalProps) {
               <select
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
-                className="w-full bg-white/60 border border-charcoal/20 rounded-xl px-4 py-4 text-charcoal focus:border-soft-blue focus:outline-none transition-colors"
+                className="w-full bg-white/60 border border-charcoal/20 rounded-xl px-4 py-3 text-charcoal focus:border-soft-blue focus:outline-none transition-colors"
               >
                 <option value="" disabled>
                   Country*
@@ -175,7 +195,7 @@ export default function HeroModal({ isOpen, onClose }: HeroModalProps) {
                 <select
                   value={countryCode}
                   onChange={(e) => setCountryCode(e.target.value)}
-                  className="w-24 bg-white/60 border border-charcoal/20 rounded-xl px-3 py-4 text-charcoal focus:border-soft-blue focus:outline-none transition-colors"
+                  className="w-20 bg-white/60 border border-charcoal/20 rounded-xl px-2 py-3 text-charcoal focus:border-soft-blue focus:outline-none transition-colors text-sm"
                 >
                   <option value="" disabled>
                     +XX
@@ -192,13 +212,13 @@ export default function HeroModal({ isOpen, onClose }: HeroModalProps) {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="Phone Number*"
-                  className="flex-1 bg-white/60 border border-charcoal/20 rounded-xl px-4 py-4 text-charcoal placeholder-charcoal/50 focus:border-soft-blue focus:outline-none transition-colors"
+                  className="flex-1 bg-white/60 border border-charcoal/20 rounded-xl px-4 py-3 text-charcoal placeholder-charcoal/50 focus:border-soft-blue focus:outline-none transition-colors"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-soft-blue to-sage-green text-white font-inter font-medium py-5 rounded-xl hover:scale-105 transition-all duration-300 elegant-glow shadow-lg"
+                className="w-full bg-gradient-to-r from-soft-blue to-sage-green text-white font-inter font-medium py-4 rounded-xl hover:scale-105 transition-all duration-300 elegant-glow shadow-lg"
               >
                 Begin Your Elite Journey
               </button>
@@ -206,7 +226,7 @@ export default function HeroModal({ isOpen, onClose }: HeroModalProps) {
               {errorMsg && <p className="text-warm-coral text-sm text-center">{errorMsg}</p>}
             </form>
 
-            <p className="text-xs text-center text-charcoal/50 mt-8 leading-relaxed">
+            <p className="text-xs text-center text-charcoal/50 mt-6 leading-relaxed">
               By joining, you're entering a community of elite athletes worldwide.
               <br />
               <a href="#" className="text-soft-blue hover:underline">
@@ -219,15 +239,21 @@ export default function HeroModal({ isOpen, onClose }: HeroModalProps) {
             </p>
           </>
         ) : (
-          <div className="text-center py-12">
-            <div className="text-6xl mb-8">✨</div>
-            <h2 className="text-3xl font-inter font-medium gradient-text mb-6">Welcome to Elite Performance</h2>
-            <p className="text-charcoal/70 font-source mb-4 leading-relaxed">
+          <div className="text-center py-8">
+            <div className="text-6xl mb-6">✨</div>
+            <h2 className="text-2xl font-inter font-medium gradient-text mb-4">Welcome to Elite Performance</h2>
+            <p className="text-charcoal/70 font-source mb-3 leading-relaxed">
               You've successfully joined our exclusive community of elite athletes.
             </p>
-            <p className="text-charcoal/60 font-source text-sm">
+            <p className="text-charcoal/60 font-source text-sm mb-6">
               Our performance team will contact you within 24 hours to discuss your personalized optimization journey.
             </p>
+            <button
+              onClick={handleClose}
+              className="bg-gradient-to-r from-soft-blue to-sage-green text-white font-inter font-medium px-6 py-3 rounded-xl hover:scale-105 transition-all duration-300"
+            >
+              Close
+            </button>
           </div>
         )}
       </div>
