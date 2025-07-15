@@ -23,7 +23,7 @@ export default function AthleteNavbar() {
           <div className="flex items-center justify-between h-20">
             {/* Logo - Left aligned */}
             <div className="flex items-center">
-              <div className="text-3xl font-serif text-neutral-900 tracking-wide">AXO</div>
+              <div className="text-3xl font-serif text-neutral-900 tracking-wide font-semibold">AXO</div>
             </div>
 
             {/* Desktop Navigation - Right aligned */}
