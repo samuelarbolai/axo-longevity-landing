@@ -226,4 +226,11 @@ export default function HeroModal({ isOpen, onClose }: HeroModalProps) {
               You've successfully joined our exclusive community of elite athletes.
             </p>
             <p className="text-charcoal/60 font-source text-sm">
-              Our performance team will contact you within 24 hours to discuss your personalized optimization journey\
+              Our performance team will contact you within 24 hours to discuss your personalized optimization journey.
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
