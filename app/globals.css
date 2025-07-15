@@ -2,71 +2,111 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap");
+
 @layer base {
   :root {
-    --background: #ffffff;
-    --foreground: #171717;
-    --border: #e5e7eb;
-    --input: #e5e7eb;
-    --ring: #3b82f6;
-    --primary: #111827;
-    --primary-foreground: #f9fafb;
-    --secondary: #f3f4f6;
-    --secondary-foreground: #111827;
-    --destructive: #ef4444;
-    --destructive-foreground: #f9fafb;
-    --muted: #f3f4f6;
-    --muted-foreground: #6b7280;
-    --accent: #f3f4f6;
-    --accent-foreground: #111827;
-    --popover: #ffffff;
-    --popover-foreground: #111827;
-    --card: #ffffff;
-    --card-foreground: #111827;
-    --radius: 0.5rem;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background: #0a0a0a;
-      --foreground: #ededed;
-      --border: #262626;
-      --input: #262626;
-      --ring: #3b82f6;
-      --primary: #f9fafb;
-      --primary-foreground: #111827;
-      --secondary: #1f2937;
-      --secondary-foreground: #f9fafb;
-      --destructive: #ef4444;
-      --destructive-foreground: #f9fafb;
-      --muted: #1f2937;
-      --muted-foreground: #9ca3af;
-      --accent: #1f2937;
-      --accent-foreground: #f9fafb;
-      --popover: #111827;
-      --popover-foreground: #f9fafb;
-      --card: #111827;
-      --card-foreground: #f9fafb;
-    }
+    --background: #0a0a0a;
+    --foreground: #ffffff;
+    --border: #2a2d34;
+    --input: #2a2d34;
+    --ring: #00d4ff;
+    --primary: #00d4ff;
+    --primary-foreground: #0a0a0a;
+    --secondary: #2a2d34;
+    --secondary-foreground: #ffffff;
+    --destructive: #ff4444;
+    --destructive-foreground: #ffffff;
+    --muted: #1a1d23;
+    --muted-foreground: #9ca3af;
+    --accent: #39ff14;
+    --accent-foreground: #0a0a0a;
+    --popover: #1a1d23;
+    --popover-foreground: #ffffff;
+    --card: #1a1d23;
+    --card-foreground: #ffffff;
+    --gold: #ffd700;
+    --electric-blue: #00d4ff;
+    --neon-green: #39ff14;
+    --titanium: #2a2d34;
+    --radius: 0.75rem;
   }
 
   body {
-    background: var(--background);
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1d23 100%);
     color: var(--foreground);
-    font-family: var(--font-montserrat), sans-serif;
+    font-family: "Source Sans Pro", sans-serif;
     scroll-behavior: smooth;
   }
 
-  .font-montserrat {
-    font-family: var(--font-montserrat), sans-serif;
+  .font-inter {
+    font-family: "Inter", sans-serif;
   }
 
-  .font-qwitcher {
-    font-family: var(--font-qwitcher), cursive;
+  .font-mono {
+    font-family: "JetBrains Mono", monospace;
   }
 
-  .font-serif4 {
-    font-family: "Source Serif 4", serif;
+  .font-source {
+    font-family: "Source Sans Pro", sans-serif;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #00d4ff 0%, #39ff14 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .performance-glow {
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  }
+
+  .neon-border {
+    border: 1px solid #00d4ff;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+  }
+
+  .pulse-animation {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  .heartbeat {
+    animation: heartbeat 1.5s ease-in-out infinite;
+  }
+
+  @keyframes heartbeat {
+    0% {
+      transform: scale(1);
+    }
+    14% {
+      transform: scale(1.1);
+    }
+    28% {
+      transform: scale(1);
+    }
+    42% {
+      transform: scale(1.1);
+    }
+    70% {
+      transform: scale(1);
+    }
+  }
+
+  .grid-pattern {
+    background-image: linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
   }
 }
 
