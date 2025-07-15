@@ -4,34 +4,36 @@
 
 @layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ffffff;
-    --border: #2a2d34;
-    --input: #2a2d34;
-    --ring: #00d4ff;
-    --primary: #00d4ff;
-    --primary-foreground: #0a0a0a;
-    --secondary: #2a2d34;
-    --secondary-foreground: #ffffff;
-    --destructive: #ff4444;
+    --background: #fafbfc;
+    --foreground: #2c3e50;
+    --border: #e8eef5;
+    --input: #f1f5f9;
+    --ring: #7c9cbf;
+    --primary: #7c9cbf;
+    --primary-foreground: #ffffff;
+    --secondary: #f1f5f9;
+    --secondary-foreground: #2c3e50;
+    --destructive: #e74c3c;
     --destructive-foreground: #ffffff;
-    --muted: #1a1d23;
-    --muted-foreground: #9ca3af;
-    --accent: #39ff14;
-    --accent-foreground: #0a0a0a;
-    --popover: #1a1d23;
-    --popover-foreground: #ffffff;
-    --card: #1a1d23;
-    --card-foreground: #ffffff;
-    --gold: #ffd700;
-    --electric-blue: #00d4ff;
-    --neon-green: #39ff14;
-    --titanium: #2a2d34;
-    --radius: 0.75rem;
+    --muted: #f8fafc;
+    --muted-foreground: #64748b;
+    --accent: #a8d5ba;
+    --accent-foreground: #2c3e50;
+    --popover: #ffffff;
+    --popover-foreground: #2c3e50;
+    --card: #ffffff;
+    --card-foreground: #2c3e50;
+    --soft-blue: #7c9cbf;
+    --sage-green: #a8d5ba;
+    --warm-coral: #f4a6a6;
+    --lavender: #c8b5d1;
+    --cream: #f9f7f4;
+    --charcoal: #2c3e50;
+    --radius: 1rem;
   }
 
   body {
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1d23 100%);
+    background: linear-gradient(135deg, #fafbfc 0%, #f1f5f9 100%);
     color: var(--foreground);
     font-family: var(--font-source-sans-pro), sans-serif;
     scroll-behavior: smooth;
@@ -50,61 +52,60 @@
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, #00d4ff 0%, #39ff14 100%);
+    background: linear-gradient(135deg, #7c9cbf 0%, #a8d5ba 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .performance-glow {
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  .elegant-glow {
+    box-shadow: 0 8px 32px rgba(124, 156, 191, 0.15);
   }
 
-  .neon-border {
-    border: 1px solid #00d4ff;
-    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+  .soft-border {
+    border: 1px solid rgba(124, 156, 191, 0.2);
+    box-shadow: 0 4px 16px rgba(124, 156, 191, 0.08);
   }
 
-  .pulse-animation {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  .gentle-pulse {
+    animation: gentlePulse 3s ease-in-out infinite;
   }
 
-  @keyframes pulse {
+  @keyframes gentlePulse {
     0%,
     100% {
       opacity: 1;
     }
     50% {
-      opacity: 0.5;
+      opacity: 0.7;
     }
   }
 
-  .heartbeat {
-    animation: heartbeat 1.5s ease-in-out infinite;
+  .floating {
+    animation: floating 6s ease-in-out infinite;
   }
 
-  @keyframes heartbeat {
+  @keyframes floating {
     0% {
-      transform: scale(1);
+      transform: translateY(0px);
     }
-    14% {
-      transform: scale(1.1);
+    50% {
+      transform: translateY(-10px);
     }
-    28% {
-      transform: scale(1);
-    }
-    42% {
-      transform: scale(1.1);
-    }
-    70% {
-      transform: scale(1);
+    100% {
+      transform: translateY(0px);
     }
   }
 
-  .grid-pattern {
-    background-image: linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px);
-    background-size: 50px 50px;
+  .subtle-pattern {
+    background-image: radial-gradient(circle at 1px 1px, rgba(124, 156, 191, 0.08) 1px, transparent 0);
+    background-size: 40px 40px;
+  }
+
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
   }
 }
 

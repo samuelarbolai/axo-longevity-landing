@@ -5,15 +5,15 @@ export default function AthleteManifesto() {
   const [expanded, setExpanded] = useState(false)
 
   return (
-    <section className="py-20 bg-gradient-to-b from-black to-gray-900">
+    <section className="py-24 bg-gradient-to-b from-cream to-white">
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
         {/* Hero Image */}
-        <div className="mb-16">
-          <div className="relative rounded-3xl overflow-hidden performance-glow">
-            <div className="bg-gradient-to-r from-electric-blue/20 to-neon-green/20 h-64 flex items-center justify-center">
+        <div className="mb-20">
+          <div className="relative rounded-3xl overflow-hidden elegant-glow">
+            <div className="bg-gradient-to-r from-soft-blue/20 to-sage-green/20 h-64 flex items-center justify-center">
               <div className="text-center">
-                <div className="text-6xl mb-4">⚡</div>
-                <div className="text-2xl font-inter font-bold gradient-text">ELITE PERFORMANCE MANIFESTO</div>
+                <div className="text-6xl mb-6">✨</div>
+                <div className="text-2xl font-inter font-medium gradient-text">ELITE PERFORMANCE PHILOSOPHY</div>
               </div>
             </div>
           </div>
@@ -21,77 +21,78 @@ export default function AthleteManifesto() {
 
         {/* Manifesto Content */}
         <div
-          className={`space-y-8 text-center transition-all duration-500 ${expanded ? "" : "max-h-96 overflow-hidden"}`}
+          className={`space-y-10 text-center transition-all duration-500 ${expanded ? "" : "max-h-96 overflow-hidden"}`}
         >
-          <h2 className="text-5xl md:text-6xl font-inter font-black text-white mb-8">
-            PERFORM. RECOVER. <span className="gradient-text">DOMINATE.</span>
+          <h2 className="text-5xl md:text-6xl font-inter font-light text-charcoal mb-12">
+            ELEVATE. REFINE. <span className="gradient-text font-medium">EXCEL.</span>
           </h2>
 
-          <div className="text-2xl text-electric-blue font-inter font-bold mb-6">Our Code</div>
+          <div className="text-2xl text-soft-blue font-inter font-medium mb-8">Our Philosophy</div>
 
-          <div className="space-y-6 text-lg text-gray-300 font-source leading-relaxed">
+          <div className="space-y-8 text-lg text-charcoal/70 font-source leading-relaxed">
             <p>
-              <strong className="text-white">Data is Power.</strong> Numbers don't lie, excuses do. We measure what
-              matters—VO2 max, lactate threshold, hormonal optimization. Every biomarker tells a story of potential
-              unleashed or wasted.
-            </p>
-
-            <p>
-              <strong className="text-white">Elite Standards, No Compromise.</strong> The protocols that built Olympic
-              champions now live in your pocket. Access isn't given—it's earned through dedication to excellence.
+              <strong className="text-charcoal">Precision Through Data.</strong> Every measurement tells a story of
+              potential. We transform numbers into insights, insights into excellence. Your biomarkers become your
+              roadmap to peak performance.
             </p>
 
             <p>
-              <strong className="text-white">Pressure Forges Champions.</strong> We don't just track—we push. Share your
-              metrics, compare with elites, iterate relentlessly. Heat that creates diamonds, not comfort zones.
+              <strong className="text-charcoal">Elegance in Excellence.</strong> True performance isn't about force—it's
+              about finesse. We bring Olympic-level protocols to your fingertips with sophisticated simplicity.
             </p>
 
             <p>
-              <strong className="text-white">Recovery is Victory.</strong> Rest isn't weakness—it's strategic dominance.
-              We optimize your downtime so your uptime destroys competition.
+              <strong className="text-charcoal">Thoughtful Optimization.</strong> Growth requires intention, not just
+              intensity. We measure, refine, and elevate—creating sustainable excellence, not fleeting gains.
             </p>
 
             <p>
-              <strong className="text-white">Marginal Gains, Massive Results.</strong> One beat lower resting heart
-              rate. One percent better oxygen efficiency. Stack the inches, own the podium.
+              <strong className="text-charcoal">Recovery as Mastery.</strong> Rest is not retreat—it's strategic
+              advancement. We optimize your restoration so your performance soars higher.
             </p>
 
             <p>
-              <strong className="text-white">Your Data, Your Edge.</strong> Your biomarkers are classified
-              intel—encrypted, protected, never sold. Your competitive advantage stays yours.
+              <strong className="text-charcoal">Incremental Brilliance.</strong> One percent better sleep quality. A
+              fraction lower inflammation. Small improvements compound into extraordinary results.
             </p>
-
-            <div className="text-2xl text-neon-green font-inter font-bold my-8">Our Promise</div>
 
             <p>
-              <strong className="text-white">Peak Performance, Extended.</strong> Longer careers, higher peaks, lives
-              lived at maximum signal. No settling for average.
+              <strong className="text-charcoal">Privacy with Purpose.</strong> Your performance data is
+              sacred—protected, private, and used solely for your advancement.
             </p>
 
-            <div className="text-2xl text-gold font-inter font-bold my-8">Your Choice</div>
+            <div className="text-2xl text-sage-green font-inter font-medium my-10">Our Commitment</div>
 
             <p>
-              <strong className="text-white">Champions Choose Differently.</strong> If you crave 5 AM training sessions
-              and decade-long dominance, step up. Bring your hunger, your discipline, your refusal to quit.
+              <strong className="text-charcoal">Sustained Excellence.</strong> Longer careers, higher peaks, performance
+              that endures. We build athletes who thrive across decades, not just seasons.
             </p>
 
-            <p className="text-xl font-inter font-bold gradient-text">
-              We supply the data, the community, the relentless edge.
+            <div className="text-2xl text-warm-coral font-inter font-medium my-10">Your Journey</div>
+
+            <p>
+              <strong className="text-charcoal">Champions Choose Refinement.</strong> If you seek morning training
+              sessions filled with purpose and careers defined by longevity, join us. Bring your dedication, your
+              curiosity, your commitment to excellence.
             </p>
 
-            <p className="text-2xl font-inter font-black text-white">
-              Perform at your peak or watch others claim your podium.
+            <p className="text-xl font-inter font-medium gradient-text">
+              We provide the insights, the community, the sophisticated edge.
+            </p>
+
+            <p className="text-2xl font-inter font-medium text-charcoal">
+              Elevate your performance or remain where you are.
             </p>
           </div>
         </div>
 
         {/* Expand/Collapse Button */}
-        <div className="text-center mt-8">
+        <div className="text-center mt-12">
           <button
             onClick={() => setExpanded(!expanded)}
-            className="bg-gradient-to-r from-electric-blue to-neon-green text-black font-inter font-bold px-8 py-3 rounded-lg hover:scale-105 transition-all duration-300"
+            className="bg-gradient-to-r from-soft-blue to-sage-green text-white font-inter font-medium px-12 py-4 rounded-2xl hover:scale-105 transition-all duration-300 shadow-lg"
           >
-            {expanded ? "Show Less" : "Read Full Manifesto"}
+            {expanded ? "Show Less" : "Read Full Philosophy"}
           </button>
         </div>
       </div>

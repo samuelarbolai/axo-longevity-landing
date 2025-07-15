@@ -5,7 +5,7 @@ import Image from "next/image"
 const athleteTestimonials = [
   {
     quote:
-      "My VO2 max increased 12% in 3 months. The biomarker insights showed exactly where I was losing efficiency in my training.",
+      "The sophisticated analysis revealed optimization opportunities I never knew existed. My VO2 max improved 12% in just three months.",
     athlete: "Marcus Chen",
     sport: "Olympic Cyclist",
     achievement: "2x Gold Medalist",
@@ -14,7 +14,7 @@ const athleteTestimonials = [
   },
   {
     quote:
-      "Axo identified my iron deficiency before it became performance-limiting. My power output increased 18% after optimization.",
+      "Axo's elegant approach to biomarker analysis identified subtle deficiencies before they impacted performance. Truly revolutionary.",
     athlete: "Sarah Rodriguez",
     sport: "Professional Triathlete",
     achievement: "Ironman World Champion",
@@ -23,7 +23,7 @@ const athleteTestimonials = [
   },
   {
     quote:
-      "The hormonal analysis revealed why my recovery was suffering. Now I'm training harder with 40% less fatigue.",
+      "The personalized insights transformed my recovery protocol. I'm training at higher intensities with significantly less fatigue.",
     athlete: "Jake Thompson",
     sport: "NFL Running Back",
     achievement: "Pro Bowl Selection",
@@ -31,7 +31,8 @@ const athleteTestimonials = [
     image: "/placeholder.svg?height=400&width=400&text=NFL+Player",
   },
   {
-    quote: "Understanding my lactate threshold changed everything. I can now maintain race pace 25% longer.",
+    quote:
+      "Understanding my lactate dynamics changed everything. I can now sustain race pace 25% longer with confidence.",
     athlete: "Elena Petrov",
     sport: "Marathon Runner",
     achievement: "Sub-2:20 Marathon",
@@ -39,7 +40,7 @@ const athleteTestimonials = [
     image: "/placeholder.svg?height=400&width=400&text=Marathon+Runner",
   },
   {
-    quote: "The inflammation markers helped me prevent overtraining. My consistency improved dramatically.",
+    quote: "The precision of their analysis helped me prevent overtraining. My consistency has improved dramatically.",
     athlete: "David Kim",
     sport: "CrossFit Athlete",
     achievement: "Games Qualifier",
@@ -57,7 +58,7 @@ export const ScrollingTestimonials = ({ children, reverse = false }) => {
       if (!start) start = timestamp
       const elapsed = timestamp - start
       if (ref.current) {
-        const scrollAmount = (elapsed / 50) % (ref.current.scrollWidth / 2)
+        const scrollAmount = (elapsed / 80) % (ref.current.scrollWidth / 2)
         ref.current.scrollLeft = reverse ? ref.current.scrollWidth / 2 - scrollAmount : scrollAmount
       }
       requestAnimationFrame(step)
@@ -77,28 +78,28 @@ export const ScrollingTestimonials = ({ children, reverse = false }) => {
 
 export default function EliteTestimonials() {
   return (
-    <section id="athlete-stories" className="py-20 bg-gradient-to-b from-gray-900 to-black">
+    <section id="athlete-stories" className="py-24 bg-gradient-to-b from-white to-cream">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-inter font-black mb-6">
-            <span className="text-white">ELITE</span>
+        <div className="text-center mb-20">
+          <h2 className="text-5xl md:text-6xl font-inter font-light mb-8">
+            <span className="text-charcoal">Elite</span>
             <br />
-            <span className="gradient-text">ATHLETES</span>
+            <span className="gradient-text font-medium">Success Stories</span>
           </h2>
-          <p className="text-xl text-gray-300 font-source max-w-3xl mx-auto">
-            Join thousands of professional athletes who've unlocked their competitive edge with precision biomarker
+          <p className="text-xl text-charcoal/70 font-source max-w-3xl mx-auto leading-relaxed">
+            Join thousands of professional athletes who've elevated their performance with sophisticated biomarker
             analysis.
           </p>
         </div>
 
         {/* Scrolling Testimonials */}
-        <div className="space-y-12">
+        <div className="space-y-16">
           <ScrollingTestimonials>
             {athleteTestimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-black/50 backdrop-blur-sm border border-electric-blue/20 rounded-2xl p-8 max-w-[400px] flex-shrink-0 whitespace-normal"
+                className="glass-effect rounded-2xl p-8 max-w-[400px] flex-shrink-0 whitespace-normal soft-border"
               >
                 <div className="flex items-center gap-4 mb-6">
                   <Image
@@ -106,21 +107,21 @@ export default function EliteTestimonials() {
                     alt={testimonial.athlete}
                     width={60}
                     height={60}
-                    className="rounded-full border-2 border-electric-blue"
+                    className="rounded-full border-2 border-soft-blue/30"
                   />
                   <div>
-                    <div className="text-white font-inter font-bold">{testimonial.athlete}</div>
-                    <div className="text-electric-blue font-source text-sm">{testimonial.sport}</div>
-                    <div className="text-gold font-source text-xs">{testimonial.achievement}</div>
+                    <div className="text-charcoal font-inter font-medium">{testimonial.athlete}</div>
+                    <div className="text-soft-blue font-source text-sm">{testimonial.sport}</div>
+                    <div className="text-warm-coral font-source text-xs">{testimonial.achievement}</div>
                   </div>
                 </div>
 
-                <blockquote className="text-gray-300 font-source leading-relaxed mb-4">
+                <blockquote className="text-charcoal/70 font-source leading-relaxed mb-6">
                   "{testimonial.quote}"
                 </blockquote>
 
-                <div className="bg-gray-800/50 rounded-lg p-3">
-                  <div className="text-neon-green font-mono text-sm font-bold">{testimonial.metrics}</div>
+                <div className="bg-sage-green/10 border border-sage-green/20 rounded-lg p-4">
+                  <div className="text-sage-green font-mono text-sm font-medium">{testimonial.metrics}</div>
                 </div>
               </div>
             ))}
@@ -128,8 +129,8 @@ export default function EliteTestimonials() {
 
           {/* Elite Partnerships */}
           <div className="text-center">
-            <div className="text-gray-400 font-source text-lg mb-8">Trusted by Elite Organizations</div>
-            <div className="flex flex-wrap justify-center items-center gap-12 opacity-60">
+            <div className="text-charcoal/60 font-source text-lg mb-8">Trusted by Elite Organizations</div>
+            <div className="flex flex-wrap justify-center items-center gap-16 opacity-60">
               {[
                 "Olympic Training Center",
                 "Team USA",
@@ -137,7 +138,7 @@ export default function EliteTestimonials() {
                 "NFL Performance Labs",
                 "Premier League Clubs",
               ].map((org, index) => (
-                <div key={index} className="text-gray-500 font-inter font-bold text-lg">
+                <div key={index} className="text-charcoal/50 font-inter font-medium text-lg">
                   {org}
                 </div>
               ))}
