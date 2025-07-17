@@ -89,129 +89,137 @@ function HeroModal({ isOpen, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+      className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-3 sm:p-4"
       onClick={handleBackdropClick}
     >
-      <div className="bg-white rounded-3xl py-8 px-8 max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl relative">
+      <div className="bg-white rounded-2xl sm:rounded-3xl w-full max-w-sm sm:max-w-md max-h-[95vh] sm:max-h-[90vh] overflow-y-auto shadow-2xl relative">
         {/* Close button */}
         <button
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl font-light transition-colors z-10"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-500 hover:text-gray-700 text-xl sm:text-2xl font-light transition-colors z-10 w-8 h-8 flex items-center justify-center"
           onClick={handleClose}
           type="button"
         >
           ×
         </button>
 
-        {!success && (
-          <>
-            <h2 className="text-3xl font-semibold text-center mb-4 text-black pr-8">Join Axo Longevity</h2>
-            <p className="text-center text-gray-600 mb-6 text-sm">It's time to take control of your health.</p>
-          </>
-        )}
+        <div className="p-4 sm:p-8">
+          {!success && (
+            <>
+              <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-3 sm:mb-4 text-black pr-6 sm:pr-8">
+                Join Axo Longevity
+              </h2>
+              <p className="text-center text-gray-600 mb-4 sm:mb-6 text-sm">
+                It's time to take control of your health.
+              </p>
+            </>
+          )}
 
-        {success ? (
-          <div className="text-center py-8">
-            <div className="text-4xl mb-4">✅</div>
-            <h2 className="text-2xl font-bold text-black mb-3">Success!</h2>
-            <p className="text-gray-600 mb-2">You have successfully joined the waitlist.</p>
-            <p className="text-gray-600 mb-6">We'll let you know of any updates by email.</p>
-            <button
-              onClick={handleClose}
-              className="bg-[#B8775D] text-white px-6 py-2 rounded-lg font-semibold hover:opacity-90 transition"
-            >
-              Close
-            </button>
-          </div>
-        ) : (
-          <form className="space-y-4" onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              placeholder="First Name*"
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 shadow-sm placeholder:font-light placeholder-gray-400 text-black focus:border-[#B8775D] focus:outline-none transition-colors"
-            />
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Email Address*"
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 shadow-sm placeholder:font-light placeholder-gray-400 text-black focus:border-[#B8775D] focus:outline-none transition-colors"
-            />
-            <div className="relative">
-              <select
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 shadow-sm text-gray-700 font-light bg-white appearance-none focus:border-[#B8775D] focus:outline-none transition-colors"
-                value={country}
-                onChange={handleCountryChange}
+          {success ? (
+            <div className="text-center py-4 sm:py-8">
+              <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">✅</div>
+              <h2 className="text-xl sm:text-2xl font-bold text-black mb-2 sm:mb-3">Success!</h2>
+              <p className="text-gray-600 mb-2 text-sm sm:text-base">You have successfully joined the waitlist.</p>
+              <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
+                We'll let you know of any updates by email.
+              </p>
+              <button
+                onClick={handleClose}
+                className="bg-[#B8775D] text-white px-6 py-2 sm:py-3 rounded-lg font-semibold hover:opacity-90 transition text-sm sm:text-base"
               >
-                <option value="" disabled>
-                  Country*
-                </option>
-                <option>Denmark</option>
-                <option>France</option>
-                <option>Germany</option>
-                <option>Italy</option>
-                <option>Netherlands</option>
-                <option>Norway</option>
-                <option>Spain</option>
-                <option>Sweden</option>
-                <option>Switzerland</option>
-                <option>United Kingdom</option>
-              </select>
-              <div className="pointer-events-none absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm">
-                ▼
-              </div>
+                Close
+              </button>
             </div>
-            <div className="flex space-x-2 w-full">
+          ) : (
+            <form className="space-y-3 sm:space-y-4" onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+                placeholder="First Name*"
+                className="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 shadow-sm placeholder:font-light placeholder-gray-400 text-black focus:border-[#B8775D] focus:outline-none transition-colors text-sm sm:text-base"
+              />
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email Address*"
+                className="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 shadow-sm placeholder:font-light placeholder-gray-400 text-black focus:border-[#B8775D] focus:outline-none transition-colors text-sm sm:text-base"
+              />
               <div className="relative">
                 <select
-                  className="w-20 border border-gray-300 rounded-lg px-2 py-3 shadow-sm text-gray-700 font-light bg-white appearance-none focus:border-[#B8775D] focus:outline-none transition-colors"
-                  value={countryCode}
-                  onChange={(e) => setCountryCode(e.target.value)}
+                  className="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 shadow-sm text-gray-700 font-light bg-white appearance-none focus:border-[#B8775D] focus:outline-none transition-colors text-sm sm:text-base"
+                  value={country}
+                  onChange={handleCountryChange}
                 >
                   <option value="" disabled>
-                    +XX
+                    Country*
                   </option>
-                  {Object.values(countryDialData).map(({ code, flag }) => (
-                    <option key={code} value={code}>
-                      {flag} {code}
-                    </option>
-                  ))}
+                  <option>Denmark</option>
+                  <option>France</option>
+                  <option>Germany</option>
+                  <option>Italy</option>
+                  <option>Netherlands</option>
+                  <option>Norway</option>
+                  <option>Spain</option>
+                  <option>Sweden</option>
+                  <option>Switzerland</option>
+                  <option>United Kingdom</option>
                 </select>
-                <div className="pointer-events-none absolute right-1 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs">
+                <div className="pointer-events-none absolute right-3 sm:right-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs sm:text-sm">
                   ▼
                 </div>
               </div>
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder="Phone Number*"
-                className="flex-1 border border-gray-300 rounded-lg px-4 py-3 shadow-sm placeholder:font-light placeholder-gray-400 text-black focus:border-[#B8775D] focus:outline-none transition-colors"
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-[#B8775D] text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
-            >
-              Join Waitlist
-            </button>
-            {errorMsg && <p className="text-red-500 text-sm text-center mt-2">{errorMsg}</p>}
-          </form>
-        )}
+              <div className="flex space-x-2 w-full">
+                <div className="relative">
+                  <select
+                    className="w-16 sm:w-20 border border-gray-300 rounded-lg px-1 sm:px-2 py-2.5 sm:py-3 shadow-sm text-gray-700 font-light bg-white appearance-none focus:border-[#B8775D] focus:outline-none transition-colors text-xs sm:text-sm"
+                    value={countryCode}
+                    onChange={(e) => setCountryCode(e.target.value)}
+                  >
+                    <option value="" disabled>
+                      +XX
+                    </option>
+                    {Object.values(countryDialData).map(({ code, flag }) => (
+                      <option key={code} value={code}>
+                        {flag} {code}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="pointer-events-none absolute right-0.5 sm:right-1 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs">
+                    ▼
+                  </div>
+                </div>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="Phone Number*"
+                  className="flex-1 border border-gray-300 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 shadow-sm placeholder:font-light placeholder-gray-400 text-black focus:border-[#B8775D] focus:outline-none transition-colors text-sm sm:text-base"
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-[#B8775D] text-white py-2.5 sm:py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity text-sm sm:text-base"
+              >
+                Join Waitlist
+              </button>
+              {errorMsg && <p className="text-red-500 text-xs sm:text-sm text-center mt-2">{errorMsg}</p>}
+            </form>
+          )}
 
-        {!success && (
-          <p className="text-xs text-center text-gray-500 mt-4">
-            By signing up, you're agreeing to our{" "}
-            <a href="#" className="underline hover:text-gray-700">
-              terms
-            </a>
-            .
-          </p>
-        )}
+          {!success && (
+            <p className="text-xs text-center text-gray-500 mt-3 sm:mt-4 leading-relaxed">
+              By signing up, you're agreeing to our{" "}
+              <a href="#" className="underline hover:text-gray-700">
+                terms
+              </a>
+              .
+            </p>
+          )}
+        </div>
       </div>
     </div>
   )
