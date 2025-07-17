@@ -29,43 +29,97 @@ export default function AthleteHero() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Calculate animation values
-  const titleOpacity = Math.max(0, 1 - scrollY / 400)
-  const titleScale = Math.max(0.8, 1 - scrollY * 0.0003)
-  const subtitleOpacity = Math.max(0, 1 - scrollY / 500)
-  const metricsOpacity = Math.max(0, 1 - scrollY / 600)
-  const buttonOpacity = Math.max(0, 1 - scrollY / 700)
+  // Intergalactic zoom calculations
+  const zoomProgress = Math.min(1, scrollY / 800)
+  const zoomScale = 1 + zoomProgress * 15 // Zoom from 1x to 16x
+  const starSpeed = zoomProgress * 100
+  const warpEffect = zoomProgress > 0.7 ? (zoomProgress - 0.7) * 10 : 0
+
+  // Element visibility based on zoom progress
+  const titleVisible = zoomProgress < 0.3
+  const subtitleVisible = zoomProgress >= 0.2 && zoomProgress < 0.5
+  const metricsVisible = zoomProgress >= 0.4 && zoomProgress < 0.7
+  const buttonVisible = zoomProgress >= 0.6
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-cream via-white to-soft-blue/10 overflow-hidden">
-      {/* Subtle Pattern Background */}
-      <div className="absolute inset-0 subtle-pattern opacity-30"></div>
+    <section className="relative min-h-screen bg-black overflow-hidden">
+      {/* Starfield Background */}
+      <div className="absolute inset-0">
+        {/* Static stars */}
+        {Array.from({ length: 200 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute bg-white rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              width: `${Math.random() * 3 + 1}px`,
+              height: `${Math.random() * 3 + 1}px`,
+              opacity: Math.random() * 0.8 + 0.2,
+              transform: `scale(${1 + zoomProgress * 2}) translateZ(${scrollY * 0.1}px)`,
+              filter: `blur(${warpEffect * 0.5}px)`,
+            }}
+          />
+        ))}
 
-      {/* Animated Floating Elements */}
+        {/* Moving star streaks during warp */}
+        {warpEffect > 0 &&
+          Array.from({ length: 50 }).map((_, i) => (
+            <div
+              key={`streak-${i}`}
+              className="absolute bg-gradient-to-r from-transparent via-white to-transparent h-px"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                width: `${warpEffect * 20 + 10}px`,
+                opacity: warpEffect * 0.8,
+                transform: `rotate(${Math.random() * 360}deg) translateX(${starSpeed}px)`,
+                animation: `streak 0.5s linear infinite`,
+              }}
+            />
+          ))}
+      </div>
+
+      {/* Nebula/Galaxy Background */}
       <div className="absolute inset-0">
         <div
-          className="absolute top-1/4 left-1/4 w-32 h-32 bg-sage-green/20 rounded-full blur-xl floating"
+          className="absolute inset-0 bg-gradient-radial from-purple-900/30 via-blue-900/20 to-transparent"
           style={{
-            transform: `translate(${Math.sin(scrollY * 0.01) * 20}px, ${Math.cos(scrollY * 0.01) * 15}px)`,
-            opacity: Math.max(0, 1 - scrollY / 800),
+            transform: `scale(${zoomScale}) rotate(${scrollY * 0.1}deg)`,
+            opacity: Math.max(0, 1 - zoomProgress * 1.5),
           }}
         />
         <div
-          className="absolute top-1/2 right-1/4 w-24 h-24 bg-soft-blue/20 rounded-full blur-xl floating"
+          className="absolute inset-0 bg-gradient-radial from-cyan-500/10 via-transparent to-transparent"
           style={{
-            animationDelay: "2s",
-            transform: `translate(${Math.cos(scrollY * 0.008) * -25}px, ${Math.sin(scrollY * 0.008) * 20}px)`,
-            opacity: Math.max(0, 1 - scrollY / 600),
+            transform: `scale(${zoomScale * 0.8}) rotate(${-scrollY * 0.15}deg)`,
+            opacity: Math.max(0, 0.8 - zoomProgress),
           }}
         />
-        <div
-          className="absolute bottom-1/4 left-1/3 w-40 h-40 bg-lavender/20 rounded-full blur-xl floating"
-          style={{
-            animationDelay: "4s",
-            transform: `translate(${Math.sin(scrollY * 0.006) * 30}px, ${Math.cos(scrollY * 0.006) * -25}px)`,
-            opacity: Math.max(0, 1 - scrollY / 700),
-          }}
-        />
+      </div>
+
+      {/* Floating cosmic particles */}
+      <div className="absolute inset-0">
+        {Array.from({ length: 30 }).map((_, i) => (
+          <div
+            key={`particle-${i}`}
+            className="absolute bg-cyan-400/60 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              width: `${Math.random() * 4 + 2}px`,
+              height: `${Math.random() * 4 + 2}px`,
+              transform: `
+                scale(${1 + zoomProgress * 3}) 
+                translateZ(${scrollY * 0.2}px)
+                translateX(${Math.sin(scrollY * 0.01 + i) * 50}px)
+                translateY(${Math.cos(scrollY * 0.01 + i) * 30}px)
+              `,
+              opacity: Math.max(0, 1 - zoomProgress * 1.2),
+              filter: `blur(${warpEffect}px)`,
+            }}
+          />
+        ))}
       </div>
 
       {/* Main Content */}
@@ -75,123 +129,133 @@ export default function AthleteHero() {
 
         {/* Hero Content */}
         <div className="flex-1 flex flex-col items-center justify-center px-4 md:px-6 text-center py-8 md:py-12">
-          {/* Animated Main Headline */}
-          <div className="mb-12 md:mb-16">
-            <h1
-              className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-inter font-light tracking-tight mb-6 md:mb-8 leading-none"
-              style={{
-                opacity: titleOpacity,
-                transform: `scale(${titleScale}) translateY(${scrollY * 0.3}px)`,
-                filter: `blur(${scrollY * 0.015}px)`,
-              }}
-            >
-              <span
-                className="text-charcoal block"
-                style={{
-                  transform: `translateX(${scrollY * 0.1}px)`,
-                }}
-              >
-                ELEVATE
-              </span>
-              <span
-                className="gradient-text font-medium block"
-                style={{
-                  transform: `translateX(${scrollY * -0.1}px)`,
-                }}
-              >
-                YOUR PEAK
-              </span>
-            </h1>
+          {/* Phase 1: Title appears first */}
+          {titleVisible && (
             <div
-              className="max-w-3xl lg:max-w-5xl mx-auto space-y-3 md:space-y-4"
+              className="mb-12 md:mb-16"
               style={{
-                opacity: subtitleOpacity,
-                transform: `translateY(${scrollY * 0.2}px)`,
+                opacity: Math.max(0, 1 - zoomProgress * 4),
+                transform: `scale(${1 + zoomProgress * 2}) translateZ(${scrollY * 0.3}px)`,
               }}
             >
-              <p className="text-lg md:text-xl lg:text-2xl xl:text-3xl text-charcoal/70 font-source font-light leading-relaxed">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-inter font-light tracking-tight mb-6 md:mb-8 leading-none text-white">
+                <span className="block animate-pulse">ELEVATE</span>
+                <span className="block text-cyan-400 animate-pulse" style={{ animationDelay: "0.5s" }}>
+                  YOUR PEAK
+                </span>
+              </h1>
+            </div>
+          )}
+
+          {/* Phase 2: Subtitle fades in */}
+          {subtitleVisible && (
+            <div
+              className="max-w-3xl lg:max-w-5xl mx-auto space-y-3 md:space-y-4 mb-12 md:mb-16"
+              style={{
+                opacity: Math.max(0, (zoomProgress - 0.2) * 3),
+                transform: `scale(${1 + zoomProgress * 1.5}) translateZ(${scrollY * 0.2}px)`,
+              }}
+            >
+              <p className="text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-300 font-source font-light leading-relaxed">
                 Sophisticated Performance Analysis for Elite Athletes
               </p>
-              <p className="text-base md:text-lg lg:text-xl xl:text-2xl text-soft-blue font-medium">
+              <p className="text-base md:text-lg lg:text-xl xl:text-2xl text-cyan-400 font-medium">
                 Refined biomarker insights trusted by Olympic champions
               </p>
             </div>
-          </div>
+          )}
 
-          {/* Animated Performance Metrics Display */}
-          <div
-            className="mb-12 md:mb-16"
-            style={{
-              opacity: metricsOpacity,
-              transform: `translateY(${scrollY * 0.15}px) scale(${Math.max(0.9, 1 - scrollY * 0.0002)})`,
-            }}
-          >
-            <PerformanceMetrics stats={performanceStats} currentIndex={currentMetric} />
-          </div>
-
-          {/* Animated CTA Section */}
-          <div
-            className="space-y-8 md:space-y-12"
-            style={{
-              opacity: buttonOpacity,
-              transform: `translateY(${scrollY * 0.1}px)`,
-            }}
-          >
-            <JoinWaitlistButton
-              onClick={() => setShowModal(true)}
-              className="bg-gradient-to-r from-soft-blue to-sage-green text-white font-inter font-medium text-lg md:text-xl px-12 md:px-16 py-4 md:py-6 rounded-2xl elegant-glow hover:scale-105 transition-all duration-500 shadow-lg"
+          {/* Phase 3: Performance Metrics */}
+          {metricsVisible && (
+            <div
+              className="mb-12 md:mb-16"
               style={{
-                transform: `scale(${Math.max(0.95, 1 - scrollY * 0.0001)})`,
+                opacity: Math.max(0, (zoomProgress - 0.4) * 3),
+                transform: `scale(${1 + zoomProgress}) translateZ(${scrollY * 0.15}px)`,
               }}
             >
-              Begin Your Journey
-            </JoinWaitlistButton>
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                <PerformanceMetrics stats={performanceStats} currentIndex={currentMetric} />
+              </div>
+            </div>
+          )}
 
-            <div className="flex flex-wrap justify-center gap-8 md:gap-16 text-sm md:text-base text-charcoal/60 font-source">
-              {[
-                { color: "sage-green", text: "100+ Elite Biomarkers", delay: 0 },
-                { color: "soft-blue", text: "Olympic-Level Analysis", delay: 1 },
-                { color: "warm-coral", text: "Personalized Protocols", delay: 2 },
-              ].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-center gap-3 md:gap-4"
-                  style={{
-                    transform: `translateY(${Math.sin(scrollY * 0.01 + item.delay) * 5}px)`,
-                    opacity: Math.max(0.6, 1 - scrollY * 0.0008),
-                  }}
+          {/* Phase 4: Final destination - CTA Button */}
+          {buttonVisible && (
+            <div
+              className="space-y-8 md:space-y-12"
+              style={{
+                opacity: Math.max(0, (zoomProgress - 0.6) * 2.5),
+                transform: `scale(${Math.max(0.8, 2 - zoomProgress)}) translateZ(${scrollY * 0.1}px)`,
+              }}
+            >
+              <div className="relative">
+                {/* Glowing ring around button */}
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full blur-xl opacity-50 animate-pulse scale-150" />
+
+                <JoinWaitlistButton
+                  onClick={() => setShowModal(true)}
+                  className="relative bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-inter font-bold text-xl md:text-2xl px-16 md:px-20 py-6 md:py-8 rounded-full shadow-2xl hover:scale-110 transition-all duration-500 border-2 border-white/30"
                 >
+                  <span className="relative z-10 flex items-center gap-3">🚀 Begin Your Journey</span>
+                </JoinWaitlistButton>
+              </div>
+
+              {/* Final phase indicators */}
+              <div className="flex flex-wrap justify-center gap-8 md:gap-16 text-sm md:text-base text-gray-300 font-source">
+                {[
+                  { icon: "🧬", text: "100+ Elite Biomarkers" },
+                  { icon: "🏆", text: "Olympic-Level Analysis" },
+                  { icon: "⚡", text: "Personalized Protocols" },
+                ].map((item, idx) => (
                   <div
-                    className={`w-3 h-3 md:w-4 md:h-4 bg-${item.color}/60 rounded-full gentle-pulse`}
-                    style={{ animationDelay: `${item.delay}s` }}
-                  />
-                  <span>{item.text}</span>
-                </div>
-              ))}
+                    key={idx}
+                    className="flex items-center gap-3 md:gap-4 bg-white/5 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10"
+                    style={{
+                      animationDelay: `${idx * 0.2}s`,
+                    }}
+                  >
+                    <span className="text-lg animate-bounce" style={{ animationDelay: `${idx * 0.3}s` }}>
+                      {item.icon}
+                    </span>
+                    <span>{item.text}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Warp speed indicator */}
+        {zoomProgress > 0.1 && (
+          <div className="fixed bottom-8 right-8 z-20">
+            <div className="bg-black/50 backdrop-blur-md rounded-full p-4 border border-cyan-500/30">
+              <div className="text-cyan-400 text-sm font-mono">
+                WARP {Math.floor(zoomProgress * 10)}.{Math.floor((zoomProgress * 100) % 10)}
+              </div>
+              <div className="w-16 h-2 bg-gray-800 rounded-full mt-2 overflow-hidden">
+                <div
+                  className="h-full bg-gradient-to-r from-cyan-500 to-purple-500 transition-all duration-100"
+                  style={{ width: `${zoomProgress * 100}%` }}
+                />
+              </div>
             </div>
           </div>
-        </div>
-
-        {/* Animated Scroll Indicator */}
-        <div
-          className="flex justify-center pb-8 md:pb-12"
-          style={{
-            opacity: Math.max(0, 1 - scrollY / 300),
-            transform: `translateY(${scrollY * 0.5}px)`,
-          }}
-        >
-          <div className="w-6 h-10 md:w-8 md:h-12 border-2 border-soft-blue/40 rounded-full flex justify-center">
-            <div
-              className="w-1 h-3 md:h-4 bg-soft-blue/60 rounded-full mt-2 md:mt-3 animate-bounce"
-              style={{
-                animationDuration: `${2 + scrollY * 0.01}s`,
-              }}
-            />
-          </div>
-        </div>
+        )}
       </div>
 
       <HeroModal isOpen={showModal} onClose={() => setShowModal(false)} />
+
+      <style jsx>{`
+        @keyframes streak {
+          0% { transform: translateX(-100px) rotate(var(--rotation)); }
+          100% { transform: translateX(100px) rotate(var(--rotation)); }
+        }
+        
+        .bg-gradient-radial {
+          background: radial-gradient(circle, var(--tw-gradient-stops));
+        }
+      `}</style>
     </section>
   )
 }

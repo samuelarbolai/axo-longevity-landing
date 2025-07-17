@@ -28,132 +28,185 @@ export default function Hero1B() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Calculate animation values based on scroll
-  const titleOpacity = Math.max(0, 1 - scrollY / 300)
-  const titleTransform = scrollY * 0.5
-  const subtitleOpacity = Math.max(0, 1 - scrollY / 400)
-  const subtitleTransform = scrollY * 0.3
-  const buttonOpacity = Math.max(0, 1 - scrollY / 500)
-  const buttonTransform = scrollY * 0.2
-  const carouselTransform = Math.max(0, scrollY - 200) * 0.1
+  // Intergalactic zoom effect
+  const zoomProgress = Math.min(1, scrollY / 1000)
+  const zoomScale = 1 + zoomProgress * 20
+  const warpEffect = zoomProgress > 0.6 ? (zoomProgress - 0.6) * 10 : 0
+
+  // Phase-based visibility
+  const titleVisible = zoomProgress < 0.4
+  const subtitleVisible = zoomProgress >= 0.2 && zoomProgress < 0.6
+  const buttonVisible = zoomProgress >= 0.4 && zoomProgress < 0.8
+  const carouselVisible = zoomProgress >= 0.7
 
   return (
     <>
-      <section className="bg-[#fef9f1] text-center px-4 py-16 md:py-20 relative overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 pointer-events-none">
+      <section className="relative min-h-screen bg-gradient-to-b from-[#0a0a0a] via-[#1a1a2e] to-[#16213e] text-center px-4 py-16 md:py-20 overflow-hidden">
+        {/* Cosmic Background */}
+        <div className="absolute inset-0">
+          {/* Stars */}
+          {Array.from({ length: 150 }).map((_, i) => (
+            <div
+              key={i}
+              className="absolute bg-white rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                width: `${Math.random() * 2 + 1}px`,
+                height: `${Math.random() * 2 + 1}px`,
+                opacity: Math.random() * 0.8 + 0.2,
+                transform: `scale(${1 + zoomProgress * 3}) translateZ(${scrollY * 0.1}px)`,
+                filter: `blur(${warpEffect * 0.3}px)`,
+              }}
+            />
+          ))}
+
+          {/* Nebula effect */}
           <div
-            className="absolute top-20 left-10 w-32 h-32 bg-[#b4735a]/10 rounded-full blur-xl"
+            className="absolute inset-0 bg-gradient-radial from-[#b4735a]/20 via-[#3c3d42]/10 to-transparent"
             style={{
-              transform: `translateY(${scrollY * 0.1}px) rotate(${scrollY * 0.2}deg)`,
-              opacity: Math.max(0, 1 - scrollY / 600),
+              transform: `scale(${zoomScale}) rotate(${scrollY * 0.05}deg)`,
+              opacity: Math.max(0, 1 - zoomProgress * 1.2),
             }}
           />
-          <div
-            className="absolute top-40 right-20 w-24 h-24 bg-[#3c3d42]/10 rounded-full blur-xl"
-            style={{
-              transform: `translateY(${scrollY * -0.15}px) rotate(${scrollY * -0.3}deg)`,
-              opacity: Math.max(0, 1 - scrollY / 500),
-            }}
-          />
-          <div
-            className="absolute bottom-40 left-1/4 w-40 h-40 bg-[#b4735a]/5 rounded-full blur-2xl"
-            style={{
-              transform: `translateY(${scrollY * 0.08}px) scale(${1 + scrollY * 0.001})`,
-              opacity: Math.max(0, 1 - scrollY / 700),
-            }}
-          />
+
+          {/* Warp streaks */}
+          {warpEffect > 0 &&
+            Array.from({ length: 30 }).map((_, i) => (
+              <div
+                key={`streak-${i}`}
+                className="absolute bg-gradient-to-r from-transparent via-[#b4735a] to-transparent h-px"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  width: `${warpEffect * 15 + 5}px`,
+                  opacity: warpEffect * 0.6,
+                  transform: `rotate(${Math.random() * 360}deg)`,
+                }}
+              />
+            ))}
         </div>
 
         <div className="w-full mx-auto relative z-10">
           <div className="min-h-[85vh] flex flex-col justify-center items-center">
-            {/* Animated Title */}
-            <h1
-              className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-serif text-[#3c3d42] font-light leading-tight"
-              style={{
-                opacity: titleOpacity,
-                transform: `translateY(${titleTransform}px) scale(${1 + scrollY * 0.0005})`,
-                filter: `blur(${scrollY * 0.02}px)`,
-              }}
-            >
-              {t.title}
-              <br />
-              <div
-                className="italic text-[#b4735a] pt-2 md:pt-3"
+            {/* Phase 1: Title */}
+            {titleVisible && (
+              <h1
+                className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-serif text-white font-light leading-tight"
                 style={{
-                  transform: `translateX(${scrollY * 0.1}px)`,
-                  opacity: Math.max(0, titleOpacity - 0.2),
+                  opacity: Math.max(0, 1 - zoomProgress * 3),
+                  transform: `scale(${1 + zoomProgress * 2}) translateZ(${scrollY * 0.3}px)`,
+                  textShadow: "0 0 20px rgba(180, 115, 90, 0.5)",
                 }}
               >
-                {t.emphasis}
+                {t.title}
+                <br />
+                <div
+                  className="italic text-[#b4735a] pt-2 md:pt-3 animate-pulse"
+                  style={{
+                    transform: `translateX(${Math.sin(scrollY * 0.01) * 10}px)`,
+                  }}
+                >
+                  {t.emphasis}
+                </div>
+              </h1>
+            )}
+
+            {/* Phase 2: Subtitle */}
+            {subtitleVisible && (
+              <p
+                className="mt-8 md:mt-12 text-xl md:text-2xl lg:text-3xl xl:text-4xl text-gray-300 max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto font-light leading-relaxed"
+                style={{
+                  opacity: Math.max(0, (zoomProgress - 0.2) * 2.5),
+                  transform: `scale(${1 + zoomProgress * 1.5}) translateZ(${scrollY * 0.2}px)`,
+                  textShadow: "0 0 15px rgba(255, 255, 255, 0.3)",
+                }}
+              >
+                {t.subtitle}
+              </p>
+            )}
+
+            {/* Phase 3: Button */}
+            {buttonVisible && (
+              <div
+                className="mt-8 md:mt-12"
+                style={{
+                  opacity: Math.max(0, (zoomProgress - 0.4) * 2.5),
+                  transform: `scale(${1 + zoomProgress}) translateZ(${scrollY * 0.15}px)`,
+                }}
+              >
+                <div className="relative">
+                  {/* Glowing aura */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#b4735a] to-[#3c3d42] rounded-full blur-xl opacity-50 animate-pulse scale-150" />
+
+                  <JoinWaitlistButton
+                    onClick={() => setIsModalOpen(true)}
+                    className="relative bg-gradient-to-r from-[#b4735a] to-[#3c3d42] text-white font-bold text-xl px-12 py-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-500 border-2 border-white/30"
+                  >
+                    <span className="flex items-center gap-2">🚀 Begin Your Journey</span>
+                  </JoinWaitlistButton>
+                </div>
               </div>
-            </h1>
+            )}
+          </div>
 
-            {/* Animated Subtitle */}
-            <p
-              className="mt-8 md:mt-12 text-xl md:text-2xl lg:text-3xl xl:text-4xl text-[#7a7a7a] max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto font-light leading-relaxed"
+          {/* Phase 4: Final destination - Carousel */}
+          {carouselVisible && (
+            <div
+              className="overflow-hidden mt-12 md:mt-16"
               style={{
-                opacity: subtitleOpacity,
-                transform: `translateY(${subtitleTransform}px)`,
-                filter: `blur(${scrollY * 0.01}px)`,
+                opacity: Math.max(0, (zoomProgress - 0.7) * 3),
+                transform: `scale(${2 - zoomProgress}) translateZ(${scrollY * 0.1}px)`,
               }}
             >
-              {t.subtitle}
-            </p>
+              <div className="min-h-[60vh] md:min-h-[70vh] relative">
+                {/* Cosmic glow around carousel */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#b4735a]/20 via-transparent to-[#3c3d42]/20 blur-3xl" />
 
-            {/* Animated Button */}
-            <div
-              className="mt-8 md:mt-12"
-              style={{
-                opacity: buttonOpacity,
-                transform: `translateY(${buttonTransform}px) scale(${Math.max(0.8, 1 - scrollY * 0.0003)})`,
-              }}
-            >
-              <JoinWaitlistButton onClick={() => setIsModalOpen(true)} />
+                <ScrollingRow>
+                  {heroImages.map((src, idx) => (
+                    <img
+                      key={idx}
+                      src={src || "/placeholder.svg"}
+                      className="h-[60vh] md:h-[70vh] rounded-[2rem] md:rounded-[3rem] mx-2 object-cover border-2 border-white/20 shadow-2xl"
+                      alt={`carousel-${idx}`}
+                      style={{
+                        transform: `scale(${1 + Math.sin(scrollY * 0.01 + idx) * 0.1}) rotate(${Math.sin(scrollY * 0.005 + idx) * 2}deg)`,
+                        filter: `brightness(1.2) saturate(1.3) drop-shadow(0 0 20px rgba(180, 115, 90, 0.3))`,
+                      }}
+                    />
+                  ))}
+                </ScrollingRow>
+              </div>
             </div>
-          </div>
-
-          {/* Animated Carousel */}
-          <div
-            className="overflow-hidden mt-12 md:mt-16"
-            style={{
-              opacity: Math.max(0, 1 - scrollY / 800),
-              transform: `translateY(${carouselTransform}px) perspective(1000px) rotateX(${scrollY * 0.02}deg)`,
-            }}
-          >
-            <div className="min-h-[60vh] md:min-h-[70vh]">
-              <ScrollingRow>
-                {heroImages.map((src, idx) => (
-                  <img
-                    key={idx}
-                    src={src || "/placeholder.svg"}
-                    className="h-[60vh] md:h-[70vh] rounded-[2rem] md:rounded-[3rem] mx-2 object-cover transition-all duration-300"
-                    alt={`carousel-${idx}`}
-                    style={{
-                      transform: `scale(${Math.max(0.9, 1 - scrollY * 0.0002)}) rotate(${Math.sin(scrollY * 0.01 + idx) * 2}deg)`,
-                      filter: `brightness(${Math.max(0.7, 1 - scrollY * 0.0005)}) saturate(${Math.max(0.5, 1 - scrollY * 0.0003)})`,
-                    }}
-                  />
-                ))}
-              </ScrollingRow>
-            </div>
-          </div>
+          )}
         </div>
 
-        {/* Scroll Progress Indicator */}
-        <div className="fixed bottom-8 right-8 z-20">
-          <div className="w-12 h-12 rounded-full border-2 border-[#b4735a]/30 flex items-center justify-center">
-            <div
-              className="w-8 h-8 rounded-full bg-[#b4735a]"
-              style={{
-                transform: `scale(${Math.min(1, scrollY / 500)})`,
-                opacity: Math.min(1, scrollY / 200),
-              }}
-            />
+        {/* Warp Speed Indicator */}
+        {zoomProgress > 0.1 && (
+          <div className="fixed bottom-8 right-8 z-20">
+            <div className="bg-black/70 backdrop-blur-md rounded-full p-3 border border-[#b4735a]/30">
+              <div className="text-[#b4735a] text-xs font-mono">
+                WARP {Math.floor(zoomProgress * 10)}.{Math.floor((zoomProgress * 100) % 10)}
+              </div>
+              <div className="w-12 h-1 bg-gray-800 rounded-full mt-1 overflow-hidden">
+                <div
+                  className="h-full bg-gradient-to-r from-[#b4735a] to-[#3c3d42] transition-all duration-100"
+                  style={{ width: `${zoomProgress * 100}%` }}
+                />
+              </div>
+            </div>
           </div>
-        </div>
+        )}
       </section>
+
       {isModalOpen && <HeroModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />}
+
+      <style jsx>{`
+        .bg-gradient-radial {
+          background: radial-gradient(circle, var(--tw-gradient-stops));
+        }
+      `}</style>
     </>
   )
 }
