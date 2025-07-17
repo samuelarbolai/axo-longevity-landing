@@ -21,15 +21,80 @@ export default function Hero1B() {
   const t = translations[lang]
   const [isModalOpen, setIsModalOpen] = React.useState(false)
   const [scrollY, setScrollY] = useState(0)
+  const [animationComplete, setAnimationComplete] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    let accumulatedScroll = 0
+    const animationThreshold = 1200 // Total scroll needed to complete animation
+
+    const handleScroll = (e) => {
+      if (!animationComplete) {
+        e.preventDefault()
+
+        // Accumulate scroll delta
+        const delta = e.deltaY || e.detail || -e.wheelDelta
+        accumulatedScroll += delta * 0.4 // Slow down the scroll accumulation
+
+        // Clamp between 0 and threshold
+        accumulatedScroll = Math.max(0, Math.min(animationThreshold, accumulatedScroll))
+
+        setScrollY(accumulatedScroll)
+
+        // Complete animation when threshold is reached
+        if (accumulatedScroll >= animationThreshold) {
+          setAnimationComplete(true)
+          // Re-enable normal scrolling
+          document.body.style.overflow = "auto"
+        }
+      }
+    }
+
+    const handleKeyDown = (e) => {
+      if (
+        !animationComplete &&
+        (e.key === "ArrowDown" || e.key === "ArrowUp" || e.key === " " || e.key === "PageDown" || e.key === "PageUp")
+      ) {
+        e.preventDefault()
+
+        const delta = e.key === "ArrowUp" || e.key === "PageUp" ? -60 : 60
+        accumulatedScroll += delta
+        accumulatedScroll = Math.max(0, Math.min(animationThreshold, accumulatedScroll))
+
+        setScrollY(accumulatedScroll)
+
+        if (accumulatedScroll >= animationThreshold) {
+          setAnimationComplete(true)
+          document.body.style.overflow = "auto"
+        }
+      }
+    }
+
+    const handleTouchMove = (e) => {
+      if (!animationComplete) {
+        e.preventDefault()
+      }
+    }
+
+    if (!animationComplete) {
+      // Disable normal scrolling during animation
+      document.body.style.overflow = "hidden"
+
+      // Add event listeners
+      window.addEventListener("wheel", handleScroll, { passive: false })
+      window.addEventListener("keydown", handleKeyDown)
+      window.addEventListener("touchmove", handleTouchMove, { passive: false })
+    }
+
+    return () => {
+      window.removeEventListener("wheel", handleScroll)
+      window.removeEventListener("keydown", handleKeyDown)
+      window.removeEventListener("touchmove", handleTouchMove)
+      document.body.style.overflow = "auto"
+    }
+  }, [animationComplete])
 
   // Intergalactic zoom effect
-  const zoomProgress = Math.min(1, scrollY / 1000)
+  const zoomProgress = Math.min(1, scrollY / 1200)
   const zoomScale = 1 + zoomProgress * 20
   const warpEffect = zoomProgress > 0.6 ? (zoomProgress - 0.6) * 10 : 0
 
@@ -41,7 +106,10 @@ export default function Hero1B() {
 
   return (
     <>
-      <section className="relative min-h-screen bg-gradient-to-b from-[#0a0a0a] via-[#1a1a2e] to-[#16213e] text-center px-4 py-16 md:py-20 overflow-hidden">
+      <section
+        className="relative min-h-screen bg-gradient-to-b from-[#0a0a0a] via-[#1a1a2e] to-[#16213e] text-center px-4 py-16 md:py-20 overflow-hidden"
+        style={{ height: animationComplete ? "auto" : "100vh" }}
+      >
         {/* Cosmic Background */}
         <div className="absolute inset-0">
           {/* Stars */}
@@ -195,6 +263,15 @@ export default function Hero1B() {
                   style={{ width: `${zoomProgress * 100}%` }}
                 />
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* Scroll instruction */}
+        {!animationComplete && zoomProgress < 0.1 && (
+          <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+            <div className="bg-black/70 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 text-white text-sm animate-pulse">
+              Scroll to begin your intergalactic journey 🚀
             </div>
           </div>
         )}

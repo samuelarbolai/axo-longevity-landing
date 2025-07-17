@@ -8,6 +8,7 @@ export default function AthleteHero() {
   const [showModal, setShowModal] = useState(false)
   const [currentMetric, setCurrentMetric] = useState(0)
   const [scrollY, setScrollY] = useState(0)
+  const [animationComplete, setAnimationComplete] = useState(false)
 
   const performanceStats = [
     { label: "VO2 MAX", value: "65.2", unit: "ml/kg/min", change: "+12%" },
@@ -24,13 +25,77 @@ export default function AthleteHero() {
   }, [])
 
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    let accumulatedScroll = 0
+    const animationThreshold = 1000 // Total scroll needed to complete animation
+
+    const handleScroll = (e) => {
+      if (!animationComplete) {
+        e.preventDefault()
+
+        // Accumulate scroll delta
+        const delta = e.deltaY || e.detail || -e.wheelDelta
+        accumulatedScroll += delta * 0.5 // Slow down the scroll accumulation
+
+        // Clamp between 0 and threshold
+        accumulatedScroll = Math.max(0, Math.min(animationThreshold, accumulatedScroll))
+
+        setScrollY(accumulatedScroll)
+
+        // Complete animation when threshold is reached
+        if (accumulatedScroll >= animationThreshold) {
+          setAnimationComplete(true)
+          // Re-enable normal scrolling
+          document.body.style.overflow = "auto"
+        }
+      }
+    }
+
+    const handleKeyDown = (e) => {
+      if (
+        !animationComplete &&
+        (e.key === "ArrowDown" || e.key === "ArrowUp" || e.key === " " || e.key === "PageDown" || e.key === "PageUp")
+      ) {
+        e.preventDefault()
+
+        const delta = e.key === "ArrowUp" || e.key === "PageUp" ? -50 : 50
+        accumulatedScroll += delta
+        accumulatedScroll = Math.max(0, Math.min(animationThreshold, accumulatedScroll))
+
+        setScrollY(accumulatedScroll)
+
+        if (accumulatedScroll >= animationThreshold) {
+          setAnimationComplete(true)
+          document.body.style.overflow = "auto"
+        }
+      }
+    }
+
+    const handleTouchMove = (e) => {
+      if (!animationComplete) {
+        e.preventDefault()
+      }
+    }
+
+    if (!animationComplete) {
+      // Disable normal scrolling during animation
+      document.body.style.overflow = "hidden"
+
+      // Add event listeners
+      window.addEventListener("wheel", handleScroll, { passive: false })
+      window.addEventListener("keydown", handleKeyDown)
+      window.addEventListener("touchmove", handleTouchMove, { passive: false })
+    }
+
+    return () => {
+      window.removeEventListener("wheel", handleScroll)
+      window.removeEventListener("keydown", handleKeyDown)
+      window.removeEventListener("touchmove", handleTouchMove)
+      document.body.style.overflow = "auto"
+    }
+  }, [animationComplete])
 
   // Intergalactic zoom calculations
-  const zoomProgress = Math.min(1, scrollY / 800)
+  const zoomProgress = Math.min(1, scrollY / 1000)
   const zoomScale = 1 + zoomProgress * 15 // Zoom from 1x to 16x
   const starSpeed = zoomProgress * 100
   const warpEffect = zoomProgress > 0.7 ? (zoomProgress - 0.7) * 10 : 0
@@ -42,7 +107,10 @@ export default function AthleteHero() {
   const buttonVisible = zoomProgress >= 0.6
 
   return (
-    <section className="relative min-h-screen bg-black overflow-hidden">
+    <section
+      className="relative min-h-screen bg-black overflow-hidden"
+      style={{ height: animationComplete ? "auto" : "100vh" }}
+    >
       {/* Starfield Background */}
       <div className="absolute inset-0">
         {/* Static stars */}
@@ -239,6 +307,15 @@ export default function AthleteHero() {
                   style={{ width: `${zoomProgress * 100}%` }}
                 />
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* Scroll instruction */}
+        {!animationComplete && zoomProgress < 0.1 && (
+          <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+            <div className="bg-black/70 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 text-white text-sm animate-pulse">
+              Scroll to begin your intergalactic journey 🚀
             </div>
           </div>
         )}
