@@ -19,7 +19,7 @@ const translations = {
     manifestoPoint8:
       "If you crave deliberate mornings and lighter decades, step in. Bring your curiosity, your discipline, your doubt. We'll supply the data, the community, the relentless edge.",
     manifestoPoint9: "Live fully now or watch from the stands.",
-    title: "It's time you own your health",
+    title: "It's time you own",
     subtitle: "Every year. Starting with 100+ lab tests and insights from top doctors. All for just $499.",
     emphasis: "your health",
     join: "Join Waitlist",
@@ -81,7 +81,7 @@ const translations = {
   },
   es: {
     // Spanish translations...
-    title: "Es hora de que tomes el control de tu salud",
+    title: "Es hora de que tomes el control de",
     subtitle: "Cada año. Comienza con más de 100 exámenes y análisis de expertos. Todo por solo $499.",
     emphasis: "tu salud",
     join: "Unirse a la lista",
